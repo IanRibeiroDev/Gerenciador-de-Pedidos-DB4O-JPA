@@ -38,8 +38,7 @@ public class Alterar {
 				List<Quentinha> resultadosQuentinha = q2.execute();
 				
 				if(resultadosQuentinha.size()>0) {
-					Quentinha qu = resultadosQuentinha.get(0);
-								
+					Quentinha qu = resultadosQuentinha.get(0);			
 					p.setQuentinha(qu);
 					
 					//Atualizando o pedido no banco
