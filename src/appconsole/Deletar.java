@@ -30,7 +30,6 @@ public class Deletar {
 	
 				//Obtendo o cliente que fez o pedido
 				Cliente c = p.getCliente();
-				
 				c.delPedido(p); //Removendo o pedido p da lista de pedidos do cliente c
 				manager.store(c); //Armazenando alteração
 					
