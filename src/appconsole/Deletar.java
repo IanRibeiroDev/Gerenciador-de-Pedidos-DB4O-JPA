@@ -1,11 +1,13 @@
 package appconsole;
 
 import java.util.List;
+
 import com.db4o.ObjectContainer;
 import com.db4o.query.Query;
 
 import modelo.Cliente;
 import modelo.Pedido;
+import modelo.Quentinha;
 
 public class Deletar {
 	protected ObjectContainer manager;
@@ -32,7 +34,12 @@ public class Deletar {
 				Cliente c = p.getCliente();
 				c.delPedido(p); //Removendo o pedido p da lista de pedidos do cliente c
 				manager.store(c); //Armazenando alteração
-					
+				
+				//Obtendo a quentinha do pedido
+				Quentinha qu = p.getQuentinha();
+				qu.delPedido(p); //Removendo o pedido p da lista de pedidos da quentinha qu
+				manager.store(qu); //Armazenando alteração
+				
 				manager.delete(p); //Deletando o pedido do banco
 				manager.commit();
 				System.out.println("Pedido apagado com sucesso.");

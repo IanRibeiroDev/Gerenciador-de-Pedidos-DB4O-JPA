@@ -38,11 +38,13 @@ public class Alterar {
 				List<Quentinha> resultadosQuentinha = q2.execute();
 				
 				if(resultadosQuentinha.size()>0) {
-					Quentinha qu = resultadosQuentinha.get(0);			
-					p.setQuentinha(qu);
+					Quentinha novaQuentinha = resultadosQuentinha.get(0);	
+					Quentinha quentinhaAntiga = p.getQuentinha();
+					p.setQuentinha(novaQuentinha);
 					
-					//Atualizando o pedido no banco
+					//Atualizando o pedido e quentinha antiga no banco
 					manager.store(p);
+					manager.store(quentinhaAntiga);
 					manager.commit();
 				
 					System.out.println("");
