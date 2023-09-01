@@ -1,7 +1,5 @@
 package appconsole;
 
-import java.time.LocalDateTime;
-
 import com.db4o.ObjectContainer;
 
 import modelo.Cliente;
@@ -199,125 +197,125 @@ public class Cadastrar {
 			manager.commit();
 
 			// Pedido
-			Pedido p1 = new Pedido(Util.gerarIdPedido(), c10, q19, "M", LocalDateTime.parse("2023-08-25T10:30:00"));
-	        manager.store(p1);
-	        manager.commit();
+			Pedido p1 = new Pedido(Util.gerarIdPedido(), c10, q19, "M", "2023-08-25 10:30:00");
+			manager.store(p1);
+			manager.commit();
 
-	        Pedido p2 = new Pedido(Util.gerarIdPedido(), c7, q18, "G", LocalDateTime.parse("2023-08-24T14:15:30"));
-	        manager.store(p2);
-	        manager.commit();
+			Pedido p2 = new Pedido(Util.gerarIdPedido(), c7, q18, "G", "2023-08-24 14:15:30");
+			manager.store(p2);
+			manager.commit();
 
-	        Pedido p3 = new Pedido(Util.gerarIdPedido(), c15, q8, "P", LocalDateTime.parse("2023-08-23T09:20:45"));
-	        manager.store(p3);
-	        manager.commit();
+			Pedido p3 = new Pedido(Util.gerarIdPedido(), c15, q8, "P", "2023-08-23 09:20:45");
+			manager.store(p3);
+			manager.commit();
 
-	        Pedido p4 = new Pedido(Util.gerarIdPedido(), c12, q5, "M", LocalDateTime.parse("2023-08-22T16:05:15"));
-	        manager.store(p4);
-	        manager.commit();
+			Pedido p4 = new Pedido(Util.gerarIdPedido(), c12, q5, "M", "2023-08-22 16:05:15");
+			manager.store(p4);
+			manager.commit();
 
-	        Pedido p5 = new Pedido(Util.gerarIdPedido(), c18, q3, "G", LocalDateTime.parse("2023-08-21T11:45:30"));
-	        manager.store(p5);
-	        manager.commit();
+			Pedido p5 = new Pedido(Util.gerarIdPedido(), c18, q3, "G", "2023-08-21 11:45:30");
+			manager.store(p5);
+			manager.commit();
 
-	        Pedido p6 = new Pedido(Util.gerarIdPedido(), c20, q10, "P", LocalDateTime.parse("2023-08-20T08:30:00"));
-	        manager.store(p6);
-	        manager.commit();
+			Pedido p6 = new Pedido(Util.gerarIdPedido(), c20, q10, "P", "2023-08-20 08:30:00");
+			manager.store(p6);
+			manager.commit();
 
-	        Pedido p7 = new Pedido(Util.gerarIdPedido(), c3, q6, "P", LocalDateTime.parse("2023-08-19T16:15:45"));
-	        manager.store(p7);
-	        manager.commit();
+			Pedido p7 = new Pedido(Util.gerarIdPedido(), c3, q6, "P", "2023-08-19 16:15:45");
+			manager.store(p7);
+			manager.commit();
 
-	        Pedido p8 = new Pedido(Util.gerarIdPedido(), c16, q11, "G", LocalDateTime.parse("2023-08-18T12:10:00"));
-	        manager.store(p8);
-	        manager.commit();
+			Pedido p8 = new Pedido(Util.gerarIdPedido(), c16, q11, "G", "2023-08-18 12:10:00");
+			manager.store(p8);
+			manager.commit();
 
-	        Pedido p9 = new Pedido(Util.gerarIdPedido(), c19, q4, "M", LocalDateTime.parse("2023-08-17T15:30:15"));
-	        manager.store(p9);
-	        manager.commit();
+			Pedido p9 = new Pedido(Util.gerarIdPedido(), c19, q4, "M", "2023-08-17 15:30:15");
+			manager.store(p9);
+			manager.commit();
 
-	        Pedido p10 = new Pedido(Util.gerarIdPedido(), c9, q20, "M", LocalDateTime.parse("2023-08-16T09:45:30"));
-	        manager.store(p10);
-	        manager.commit();
+			Pedido p10 = new Pedido(Util.gerarIdPedido(), c9, q20, "M", "2022-11-10 09:45:30");
+			manager.store(p10);
+			manager.commit();
 
-	        Pedido p11 = new Pedido(Util.gerarIdPedido(), c13, q7, "G", LocalDateTime.parse("2023-05-01T10:30:00"));
-	        manager.store(p11);
-	        manager.commit();
+			Pedido p11 = new Pedido(Util.gerarIdPedido(), c13, q7, "G", "2023-05-01 10:30:00");
+			manager.store(p11);
+			manager.commit();
 
-	        Pedido p12 = new Pedido(Util.gerarIdPedido(), c1, q17, "P", LocalDateTime.parse("2023-05-02T14:15:30"));
-	        manager.store(p12);
-	        manager.commit();
+			Pedido p12 = new Pedido(Util.gerarIdPedido(), c1, q17, "P", "2023-05-02 14:15:30");
+			manager.store(p12);
+			manager.commit();
 
-	        Pedido p13 = new Pedido(Util.gerarIdPedido(), c4, q9, "G", LocalDateTime.parse("2023-05-03T09:20:45"));
-	        manager.store(p13);
-	        manager.commit();
+			Pedido p13 = new Pedido(Util.gerarIdPedido(), c4, q9, "G", "2023-05-03 09:20:45");
+			manager.store(p13);
+			manager.commit();
 
-	        Pedido p14 = new Pedido(Util.gerarIdPedido(), c14, q12, "P", LocalDateTime.parse("2023-05-04T16:05:15"));
-	        manager.store(p14);
-	        manager.commit();
+			Pedido p14 = new Pedido(Util.gerarIdPedido(), c14, q12, "P", "2023-05-04 16:05:15");
+			manager.store(p14);
+			manager.commit();
 
-	        Pedido p15 = new Pedido(Util.gerarIdPedido(), c8, q14, "G", LocalDateTime.parse("2023-05-05T11:45:30"));
-	        manager.store(p15);
-	        manager.commit();
+			Pedido p15 = new Pedido(Util.gerarIdPedido(), c8, q14, "G", "2023-05-05 11:45:30");
+			manager.store(p15);
+			manager.commit();
 
-	        Pedido p16 = new Pedido(Util.gerarIdPedido(), c2, q13, "M", LocalDateTime.parse("2023-05-06T08:30:00"));
-	        manager.store(p16);
-	        manager.commit();
+			Pedido p16 = new Pedido(Util.gerarIdPedido(), c2, q13, "M", "2023-05-06 08:30:00");
+			manager.store(p16);
+			manager.commit();
 
-	        Pedido p17 = new Pedido(Util.gerarIdPedido(), c17, q16, "P", LocalDateTime.parse("2023-05-07T16:15:45"));
-	        manager.store(p17);
-	        manager.commit();
+			Pedido p17 = new Pedido(Util.gerarIdPedido(), c17, q16, "P", "2023-05-07 16:15:45");
+			manager.store(p17);
+			manager.commit();
 
-	        Pedido p18 = new Pedido(Util.gerarIdPedido(), c20, q15, "G", LocalDateTime.parse("2023-05-08T12:10:00"));
-	        manager.store(p18);
-	        manager.commit();
+			Pedido p18 = new Pedido(Util.gerarIdPedido(), c20, q15, "G", "2023-05-08 12:10:00");
+			manager.store(p18);
+			manager.commit();
 
-	        Pedido p19 = new Pedido(Util.gerarIdPedido(), c5, q2, "M", LocalDateTime.parse("2023-05-09T15:30:15"));
-	        manager.store(p19);
-	        manager.commit();
+			Pedido p19 = new Pedido(Util.gerarIdPedido(), c5, q2, "M", "2023-05-09 15:30:15");
+			manager.store(p19);
+			manager.commit();
 
-	        Pedido p20 = new Pedido(Util.gerarIdPedido(), c11, q1, "P", LocalDateTime.parse("2023-05-09T09:45:30"));
-	        manager.store(p20);
-	        manager.commit();
+			Pedido p20 = new Pedido(Util.gerarIdPedido(), c11, q1, "P", "2023-05-09 09:45:30");
+			manager.store(p20);
+			manager.commit();
 	        
-	        Pedido p21 = new Pedido(Util.gerarIdPedido(), c6, q20, "P", LocalDateTime.parse("2022-11-01T10:30:00"));
-	        manager.store(p21);
-	        manager.commit();
+			Pedido p21 = new Pedido(Util.gerarIdPedido(), c6, q20, "P", "2022-11-01 10:30:00");
+			manager.store(p21);
+			manager.commit();
 
-	        Pedido p22 = new Pedido(Util.gerarIdPedido(), c15, q19, "G", LocalDateTime.parse("2022-11-02T14:15:30"));
-	        manager.store(p22);
-	        manager.commit();
+			Pedido p22 = new Pedido(Util.gerarIdPedido(), c15, q19, "G", "2022-11-02 14:15:30");
+			manager.store(p22);
+			manager.commit();
 
-	        Pedido p23 = new Pedido(Util.gerarIdPedido(), c12, q18, "M", LocalDateTime.parse("2022-11-03T09:20:45"));
-	        manager.store(p23);
-	        manager.commit();
+			Pedido p23 = new Pedido(Util.gerarIdPedido(), c12, q18, "M", "2022-11-03 09:20:45");
+			manager.store(p23);
+			manager.commit();
 
-	        Pedido p24 = new Pedido(Util.gerarIdPedido(), c18, q17, "M", LocalDateTime.parse("2022-11-04T16:05:15"));
-	        manager.store(p24);
-	        manager.commit();
+			Pedido p24 = new Pedido(Util.gerarIdPedido(), c18, q17, "M", "2022-11-04 16:05:15");
+			manager.store(p24);
+			manager.commit();
 
-	        Pedido p25 = new Pedido(Util.gerarIdPedido(), c9, q14, "G", LocalDateTime.parse("2022-11-05T11:45:30"));
-	        manager.store(p25);
-	        manager.commit();
+			Pedido p25 = new Pedido(Util.gerarIdPedido(), c9, q14, "G", "2022-11-05 11:45:30");
+			manager.store(p25);
+			manager.commit();
 
-	        Pedido p26 = new Pedido(Util.gerarIdPedido(), c4, q13, "P", LocalDateTime.parse("2022-11-06T08:30:00"));
-	        manager.store(p26);
-	        manager.commit();
+			Pedido p26 = new Pedido(Util.gerarIdPedido(), c4, q13, "P", "2022-11-06 08:30:00");
+			manager.store(p26);
+			manager.commit();
 
-	        Pedido p27 = new Pedido(Util.gerarIdPedido(), c17, q16, "M", LocalDateTime.parse("2022-11-07T16:15:45"));
-	        manager.store(p27);
-	        manager.commit();
+			Pedido p27 = new Pedido(Util.gerarIdPedido(), c17, q16, "M", "2022-11-07 16:15:45");
+			manager.store(p27);
+			manager.commit();
 
-	        Pedido p28 = new Pedido(Util.gerarIdPedido(), c20, q15, "G", LocalDateTime.parse("2022-11-08T12:10:00"));
-	        manager.store(p28);
-	        manager.commit();
+			Pedido p28 = new Pedido(Util.gerarIdPedido(), c20, q15, "G", "2022-11-08 12:10:00");
+			manager.store(p28);
+			manager.commit();
 
-	        Pedido p29 = new Pedido(Util.gerarIdPedido(), c5, q2, "M", LocalDateTime.parse("2022-11-09T15:30:15"));
-	        manager.store(p29);
-	        manager.commit();
+			Pedido p29 = new Pedido(Util.gerarIdPedido(), c5, q2, "M", "2022-11-09 15:30:15");
+			manager.store(p29);
+			manager.commit();
 
-	        Pedido p30 = new Pedido(Util.gerarIdPedido(), c11, q1, "P", LocalDateTime.parse("2022-11-10T09:45:30"));
-	        manager.store(p30);
-	        manager.commit();
+			Pedido p30 = new Pedido(Util.gerarIdPedido(), c11, q1, "P", "2022-11-10 09:45:30");
+			manager.store(p30);
+			manager.commit();
 	        
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

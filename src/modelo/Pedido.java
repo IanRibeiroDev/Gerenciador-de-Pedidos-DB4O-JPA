@@ -1,8 +1,5 @@
 package modelo;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 public class Pedido {
 	private int id;
 	private Cliente cliente;
@@ -10,15 +7,12 @@ public class Pedido {
 	private String tamanho;
 	private String data;
 
-	public Pedido(int id, Cliente cliente, Quentinha quentinha, String tamanho, LocalDateTime data) {
+	public Pedido(int id, Cliente cliente, Quentinha quentinha, String tamanho, String data) {
 		this.id = id;
 		this.cliente = cliente;
 		this.quentinha = quentinha;
 		this.tamanho = tamanho;
-
-		DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-		String dataFormatada = data.format(formatoData);
-		this.data = dataFormatada;
+		this.data = data;
 
 		this.criarRelacionamento(cliente, quentinha);
 	}
