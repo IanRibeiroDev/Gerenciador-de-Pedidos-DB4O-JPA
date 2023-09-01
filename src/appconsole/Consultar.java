@@ -39,6 +39,16 @@ public class Consultar {
 			for(Quentinha q : resultado2) {
 				System.out.println(q);
 			}
+
+			System.out.println("\n\nClientes com mais de 1 pedido: \n");
+
+			Query q = manager.query();
+			q.constrain(Cliente.class);
+			q.constrain( new Filtro1() );
+			List<Cliente> resultados = q.execute();
+			
+			for(Cliente cl : resultados)
+				System.out.println("Cliente: " + cl.getNome() + " | Total de pedidos: " + cl.getListaPedidos().size());
 			
 			
 		} catch (Exception e) {
@@ -54,4 +64,15 @@ public class Consultar {
 		new Consultar();
 	}
 
+}
+
+//classe interna
+class Filtro1 implements Evaluation {
+	public void evaluate(Candidate candidate) {
+		Cliente cl = (Cliente) candidate.getObject();
+		if(cl.getListaPedidos().size()> 1) 
+			candidate.include(true); 
+		else		
+			candidate.include(false);
+	}
 }
