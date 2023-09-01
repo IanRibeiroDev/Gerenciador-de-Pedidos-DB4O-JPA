@@ -42,6 +42,11 @@ public class Cliente {
 		return null;
 	}
 
+	//Retorna o array pedidos
+	public List<Pedido> getListaPedidos() {
+		return pedidos;
+	}
+
 	// Adiciona o pedido apenas se ele ainda nao se encontrava na lista
 	public void addPedido(Pedido pedido) {
 		if (!pedidos.contains(pedido)) {
