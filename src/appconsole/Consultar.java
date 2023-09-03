@@ -3,8 +3,11 @@ package appconsole;
 import java.util.List;
 
 import com.db4o.ObjectContainer;
+import com.db4o.query.Candidate;
+import com.db4o.query.Evaluation;
 import com.db4o.query.Query;
 
+import modelo.Cliente;
 import modelo.Pedido;
 import modelo.Quentinha;
 
@@ -64,15 +67,14 @@ public class Consultar {
 		new Consultar();
 	}
 
-}
-
-//classe interna
-class Filtro1 implements Evaluation {
-	public void evaluate(Candidate candidate) {
-		Cliente cl = (Cliente) candidate.getObject();
-		if(cl.getListaPedidos().size()> 1) 
-			candidate.include(true); 
-		else		
-			candidate.include(false);
+	//classe interna
+	class Filtro1 implements Evaluation {
+		public void evaluate(Candidate candidate) {
+			Cliente cl = (Cliente) candidate.getObject();
+			if(cl.getListaPedidos().size()> 1) 
+				candidate.include(true); 
+			else		
+				candidate.include(false);
+		}
 	}
 }
