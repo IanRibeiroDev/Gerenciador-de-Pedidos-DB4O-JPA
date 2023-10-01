@@ -8,9 +8,8 @@ public class Cliente {
 	private String nome;
 	private String telefone;
 	private List<Pedido> pedidos = new ArrayList<>();
-
-	public Cliente(int id, String nome, String telefone) {
-		this.id = id;
+	
+	public Cliente(String nome, String telefone) {
 		this.nome = nome;
 		this.telefone = telefone;
 	}
@@ -63,6 +62,10 @@ public class Cliente {
 
 	public int getId() {
 		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String toString() {

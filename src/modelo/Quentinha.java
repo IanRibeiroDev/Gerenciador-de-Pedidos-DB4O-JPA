@@ -6,10 +6,9 @@ import java.util.List;
 public class Quentinha {
 	private int id;
 	private String descricao;
-	List<Pedido> pedidos = new ArrayList<>();
-
-	public Quentinha(int id, String descricao) {
-		this.id = id;
+	private List<Pedido> pedidos = new ArrayList<>();
+	
+	public Quentinha(String descricao) {
 		this.descricao = descricao;
 	}
 
@@ -49,7 +48,15 @@ public class Quentinha {
 	public int getId() {
 		return id;
 	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
 
+	public int getVezesPedida() {
+		return pedidos.size();
+	}
+	
 	public String toString() {
 		return "Quentinha: " + id + ", Descricao: (" + descricao + "), Vezes pedida: " + pedidos.size();
 	}

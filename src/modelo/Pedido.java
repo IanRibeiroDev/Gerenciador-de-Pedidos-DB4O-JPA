@@ -7,8 +7,7 @@ public class Pedido {
 	private String tamanho;
 	private String data;
 
-	public Pedido(int id, Cliente cliente, Quentinha quentinha, String tamanho, String data) {
-		this.id = id;
+	public Pedido(Cliente cliente, Quentinha quentinha, String tamanho, String data) {
 		this.cliente = cliente;
 		this.quentinha = quentinha;
 		this.tamanho = tamanho;
@@ -36,6 +35,10 @@ public class Pedido {
 		return id;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public Cliente getCliente() {
 		return cliente;
 	}

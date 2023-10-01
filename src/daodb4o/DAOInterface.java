@@ -1,9 +1,5 @@
 package daodb4o;
-/**********************************
- * IFPB - SI
- * POB - Persistencia de Objetos
- * Prof. Fausto Ayres
- **********************************/
+
 import java.util.List;
 
 public interface DAOInterface<T> {

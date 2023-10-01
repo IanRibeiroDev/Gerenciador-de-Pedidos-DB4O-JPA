@@ -1,47 +1,35 @@
 package appconsole;
 
-import java.util.List;
-
-import com.db4o.ObjectContainer;
-import com.db4o.query.Query;
-
 import modelo.Cliente;
 import modelo.Pedido;
 import modelo.Quentinha;
+import regras_negocio.Fachada;
 
 public class Listar {
-	protected ObjectContainer manager;
-	
 	public Listar() {
 		try {
-			manager = Util.conectarBanco();
+			Fachada.inicializar();
 			
 			System.out.println("---Listagem Quentinhas\n");
-			Query q = manager.query();
-			q.constrain(Quentinha.class);  				
-			List<Quentinha> resultadosQuentinha = q.execute();
-			for(Quentinha quent: resultadosQuentinha)
+			
+			for(Quentinha quent: Fachada.listarQuentinhas())
 				System.out.println(quent);
 
 			System.out.println("\n---Listagem Clientes\n");
-			q = manager.query();
-			q.constrain(Cliente.class);  				
-			List<Cliente> resultadosCliente = q.execute();
-			for(Cliente cli: resultadosCliente)
+	
+			for(Cliente cli: Fachada.listarClientes())
 				System.out.println(cli);
 			
 			System.out.println("\n---Listagem Pedidos\n");
-			q = manager.query();
-			q.constrain(Pedido.class);  				
-			List<Pedido> resultadosPedido = q.execute();
-			for(Pedido ped: resultadosPedido)
+	
+			for(Pedido ped: Fachada.listarPedidos())
 				System.out.println(ped + "\n");
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 
-		Util.desconectar();
+		Fachada.finalizar();
 		System.out.println("Fim da listagem!");
 	}
 	

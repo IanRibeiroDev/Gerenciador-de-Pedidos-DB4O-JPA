@@ -1,9 +1,3 @@
-/**********************************
- * IFPB - SI
- * POB - Persistencia de Objetos
- * Prof. Fausto Ayres
- **********************************/
-
 package daodb4o;
 
 import java.util.List;
@@ -12,16 +6,33 @@ import com.db4o.query.Candidate;
 import com.db4o.query.Evaluation;
 import com.db4o.query.Query;
 
-import modelo.Carro;
+import modelo.Quentinha;
 
 public class DAOQuentinha extends DAO<Quentinha>{
 
-	public Quentinha read (Object chave){
-		String placa = (String) chave;	//casting para o tipo da chave
+	public void create(Quentinha quen){
+		int novoid = super.gerarId();  	//gerar novo id da classe
+		quen.setId(novoid);				//atualizar id do objeto antes de grava-lo no banco
+		manager.store( quen );
+	}
+	
+	public Quentinha read (Object pk){
+		int id = (int) pk;	
 		Query q = manager.query();
-		q.constrain(Carro.class);
-		q.descend("placa").constrain(placa);
-		List<Carro> resultados = q.execute();
+		q.constrain(Quentinha.class);
+		q.descend("id").constrain(id);
+		List<Quentinha> resultados = q.execute();
+		if (resultados.size()>0)
+			return resultados.get(0);
+		else
+			return null;
+	}
+	
+	public Quentinha buscarPorDescricao (String descricao) {	
+		Query q = manager.query();
+		q.constrain(Quentinha.class);
+		q.descend("descricao").constrain(descricao);
+		List<Quentinha> resultados = q.execute();
 		if (resultados.size()>0)
 			return resultados.get(0);
 		else
@@ -29,11 +40,12 @@ public class DAOQuentinha extends DAO<Quentinha>{
 	}
 
 	//--------------------------------------------
-	//  consultas de Carro
+	//  consultas de Quentinha
 	//--------------------------------------------
-	public List<Carro> carrosNAlugueis(int n){
+	
+	public List<Quentinha> quentinhasPedidasMaisDeNVezes(int n){
 		Query q = manager.query();
-		q.constrain(Carro.class);
+		q.constrain(Quentinha.class);
 		q.constrain(new Filtro(n));
 		return q.execute();
 	}
@@ -46,13 +58,12 @@ public class DAOQuentinha extends DAO<Quentinha>{
 			this.n = n;
 		}
 		public void evaluate(Candidate candidate) {
-			Carro car = (Carro) candidate.getObject();
-			if(car.getAlugueis().size()== n) 
+			Quentinha quen = (Quentinha) candidate.getObject();
+			if(quen.getVezesPedida()> n) 
 				candidate.include(true); 
 			else		
 				candidate.include(false);
 		}
 	}
-
 
 }
