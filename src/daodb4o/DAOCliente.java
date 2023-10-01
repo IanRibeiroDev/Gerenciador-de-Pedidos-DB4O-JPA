@@ -44,16 +44,6 @@ public class DAOCliente extends DAO<Cliente>{
 	//  consultas
 	//--------------------------------------------
 	
-	public List<Quentinha> consultarQuentinhasPedidas(int pk) {
-		Query q = manager.query();
-		q.constrain(Cliente.class);
-		q.descend("id").constrain(pk);
-		q.descend("pedidos").descend("quentinha");
-		
-		List<Quentinha> resultado = q.execute();
-		return resultado;
-	}
-	
 	public List<Cliente> clientesComMaisDeNPedidos(int n) {
 		Query q = manager.query();
 		q.constrain(Cliente.class);

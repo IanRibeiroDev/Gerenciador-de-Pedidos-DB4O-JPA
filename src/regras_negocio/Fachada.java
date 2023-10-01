@@ -1,21 +1,26 @@
 package regras_negocio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import daodb4o.DAO;
 import daodb4o.DAOCliente;
 import daodb4o.DAOPedido;
 import daodb4o.DAOQuentinha;
+import daodb4o.DAOUsuario;
 import modelo.Cliente;
 import modelo.Pedido;
 import modelo.Quentinha;
+import modelo.Usuario;
 
 public class Fachada {
 	private Fachada() {}
 
 	private static DAOQuentinha daoquentinha = new DAOQuentinha();  
 	private static DAOPedido daopedido = new DAOPedido(); 
-	private static DAOCliente daocliente = new DAOCliente();  
+	private static DAOCliente daocliente = new DAOCliente();
+	private static DAOUsuario daousuario = new DAOUsuario(); 
+	public static Usuario logado;	//contem o objeto Usuario logado em TelaLogin.java
 
 	public static void inicializar(){
 		DAO.open();
@@ -29,7 +34,7 @@ public class Fachada {
 		DAO.begin();
 		Quentinha quen = daoquentinha.buscarPorDescricao(descricao);
 		if(quen!=null) 
-			throw new Exception ("Quentinha ja cadastrada!");
+			throw new Exception ("Quentinha com descricao identica ja esta cadastrada no banco!");
 		
 		quen = new Quentinha(descricao);
 		daoquentinha.create(quen);
@@ -86,7 +91,7 @@ public class Fachada {
 		DAO.begin();
 		Cliente cli = daocliente.buscarPorTelefone(telefone);
 		if (cli!=null)
-			throw new Exception("Cliente ja cadastrado!");
+			throw new Exception("Telefone associado a outro cliente! Informe um telefone ainda nao cadastrado.");
 		
 		cli = new Cliente(nome, telefone);
 
@@ -133,11 +138,21 @@ public class Fachada {
 		return resultados;
 	}
 	
-	public static List<Quentinha> consultarQuentinhasPedidas(int idCliente){	
+	public static List<Quentinha> consultarQuentinhasPedidasPorCliente(int idCliente) throws Exception{	
 		DAO.begin();
-		List<Quentinha> resultados =  daocliente.consultarQuentinhasPedidas(idCliente);
+		Cliente cli =  daocliente.read(idCliente);
+		if(cli==null)
+			throw new Exception ("Cliente inexistente!");
+		
+		List<Pedido> pedidos = cli.getListaPedidos();
+		List<Quentinha> quentinhasPedidas = new ArrayList<>();
+		
+		for(Pedido ped : pedidos)
+			if(!quentinhasPedidas.contains(ped.getQuentinha()))
+				quentinhasPedidas.add(ped.getQuentinha());
+		
 		DAO.commit();
-		return resultados;
+		return quentinhasPedidas;
 	}
 
 	public static List<Quentinha> quentinhasPedidasMaisDeNVezes(int n){	
@@ -172,4 +187,104 @@ public class Fachada {
 	public static Pedido localizarPedido(int id){
 		return daopedido.read(id);
 	}
+	
+	//Alterar nome e telefone -- Cliente
+	//Alterar descricao -- Quentinha
+	//Alterar quentinha e tamanho -- Pedido
+	
+	public static Cliente alterarNomeCliente(int id, String novoNome) throws Exception {
+		DAO.begin();
+		Cliente cli =  daocliente.read(id);
+		if(cli==null)
+			throw new Exception ("Cliente inexistente!");
+		
+		cli.setNome(novoNome);
+		daocliente.update(cli);
+		DAO.commit();
+		return cli;
+	}
+	
+	public static Cliente alterarTelefoneCliente(int id, String novoTelefone) throws Exception {
+		DAO.begin();
+		Cliente cli =  daocliente.read(id);
+		if(cli==null)
+			throw new Exception ("Cliente inexistente!");
+		
+		Cliente telefone = daocliente.buscarPorTelefone(novoTelefone);
+		if(telefone!=null)
+			throw new Exception("Telefone associado a outro cliente! Informe um telefone ainda nao cadastrado.");
+		
+		cli.setTelefone(novoTelefone);
+		daocliente.update(cli);
+		DAO.commit();
+		return cli;
+	}
+	
+	public static Quentinha alterarDescricaoQuentinha(int id, String novaDescricao) throws Exception {
+		DAO.begin();
+		Quentinha quen = daoquentinha.read(id);
+		if(quen==null)
+			throw new Exception ("Quentinha inexistente!");
+		
+		Quentinha descricao = daoquentinha.buscarPorDescricao(novaDescricao);
+		if(descricao!=null)
+			throw new Exception ("Quentinha com descricao identica ja esta cadastrada no banco!");
+		
+		quen.setDescricao(novaDescricao);
+		daoquentinha.update(quen);
+		DAO.commit();
+		return quen;
+	}
+	
+	public static Pedido alterarTamanhoPedido(int id, String novoTamanho) throws Exception {
+		DAO.begin();
+		Pedido ped = daopedido.read(id);
+		if(ped==null)
+			throw new Exception ("Pedido inexistente!");
+		
+		ped.setTamanho(novoTamanho);
+		daopedido.update(ped);
+		DAO.commit();
+		return ped;
+	}
+	
+	public static Pedido alterarQuentinhaPedido(int idPedido, int idNovaQuentinha) throws Exception {
+		DAO.begin();
+		Pedido ped = daopedido.read(idPedido);
+		if(ped==null)
+			throw new Exception ("Pedido inexistente!");
+		
+		Quentinha novaQuen = daoquentinha.read(idNovaQuentinha);
+		if(novaQuen==null)
+			throw new Exception ("Quentinha inexistente!");
+		
+		Quentinha antigaQuen = ped.getQuentinha();
+		ped.setQuentinha(novaQuen);
+		daopedido.update(ped);
+		daoquentinha.update(antigaQuen);
+		DAO.commit();
+		return ped;
+	}
+	
+	//------------------Usuario------------------------------------
+	public static Usuario cadastrarUsuario(String nome, String senha) throws Exception{
+		DAO.begin();
+		Usuario usu = daousuario.read(nome);
+		if (usu!=null)
+			throw new Exception("Usuario ja cadastrado:" + nome);
+		usu = new Usuario(nome, senha);
+
+		daousuario.create(usu);
+		DAO.commit();
+		return usu;
+	}
+	public static Usuario localizarUsuario(String nome, String senha) {
+		Usuario usu = daousuario.read(nome);
+		if (usu==null)
+			return null;
+		if (! usu.getSenha().equals(senha))
+			return null;
+		return usu;
+	}
+	
 }

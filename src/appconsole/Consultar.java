@@ -29,7 +29,7 @@ public class Consultar {
 			//Quentinhas pedidas pelo cliente Matheus Rodrigues(ID: 20)
 			System.out.println("\nQuentinhas pedidas pelo cliente Matheus Rodrigues(ID: 20):\n");
 			
-			for(Quentinha q : Fachada.consultarQuentinhasPedidas(20)) {
+			for(Quentinha q : Fachada.consultarQuentinhasPedidasPorCliente(20)) {
 				System.out.println(q);
 			}
 
