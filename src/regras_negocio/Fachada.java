@@ -100,7 +100,7 @@ public class Fachada {
 		return cli;
 	}
 	
-	public static void excluirCliente(String id) throws Exception{
+	public static void excluirCliente(int id) throws Exception{
 		DAO.begin();
 		Cliente cli = daocliente.read(id);
 		if(cli==null) 
