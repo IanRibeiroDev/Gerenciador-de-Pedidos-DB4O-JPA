@@ -225,10 +225,11 @@ public class TelaConsulta {
 			model.addColumn("Id Cliente");
 			model.addColumn("Nome");
 			model.addColumn("Telefone");
+			model.addColumn("Nº pedidos");
 
 			//Adicionar linhas no model
 			for(Cliente cli : lista) {
-				model.addRow(new Object[]{cli.getId(),cli.getNome(),cli.getTelefone()} );
+				model.addRow(new Object[]{cli.getId(),cli.getNome(),cli.getTelefone(),cli.getListaPedidos().size()} );
 			}
 			//Atualizar model no table (visualizacao)
 			table.setModel(model);
@@ -248,7 +249,7 @@ public class TelaConsulta {
 			//Adicionar colunas no model
 			model.addColumn("Id Quentinha");
 			model.addColumn("Descrição");
-			model.addColumn("N vezes pedida");
+			model.addColumn("Nº de vezes pedida");
 
 			//Adicionar linhas no model
 			for(Quentinha que : lista) {

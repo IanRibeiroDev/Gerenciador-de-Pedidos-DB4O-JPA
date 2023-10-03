@@ -84,6 +84,15 @@ public class Fachada {
 			throw new Exception ("Quentinha inexistente!");
 
 		daoquentinha.delete(quen);
+		
+		//Vamos excluir os pedidos com essa quentinha
+		List<Pedido> resultados =  listarPedidos();
+		for (int i = 0; i < resultados.size(); i++) {
+			if(resultados.get(i).getQuentinha() == quen) {
+				daopedido.delete(resultados.get(i));
+			}
+		}
+		
 		DAO.commit();
 	}
 
@@ -95,7 +104,8 @@ public class Fachada {
 		
 		cli = new Cliente(nome, telefone);
 
-		daocliente.create(cli);
+		daocliente.create(cli);	
+		
 		DAO.commit();
 		return cli;
 	}
@@ -107,6 +117,14 @@ public class Fachada {
 			throw new Exception ("Cliente inexistente!");
 
 		daocliente.delete(cli);;
+		
+		//Vamos excluir os pedidos desse cliente
+		List<Pedido> resultados =  listarPedidos();
+		for (int i = 0; i < resultados.size(); i++) {
+			if(resultados.get(i).getCliente()==cli) {
+				daopedido.delete(resultados.get(i));
+			}
+		}
 		DAO.commit();
 	}
 

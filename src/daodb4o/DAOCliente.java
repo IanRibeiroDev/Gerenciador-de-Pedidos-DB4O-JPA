@@ -7,7 +7,6 @@ import com.db4o.query.Evaluation;
 import com.db4o.query.Query;
 
 import modelo.Cliente;
-import modelo.Quentinha;
 
 public class DAOCliente extends DAO<Cliente>{
 

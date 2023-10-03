@@ -102,8 +102,7 @@ public class TelaPedido {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//lblResultados.setText("selecionado="+ (int) table.getValueAt( table.getSelectedRow(), 0));
-				lblResultados.setText("selecionado="+ (String) table.getValueAt( table.getSelectedRow(), 0));
+				lblResultados.setText("selecionado="+ (int) table.getValueAt( table.getSelectedRow(), 0));
 			}
 		});
 		table.setGridColor(Color.BLACK);
@@ -113,7 +112,6 @@ public class TelaPedido {
 		table.setFillsViewportHeight(true);
 		table.setRowSelectionAllowed(true);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		//scrollPane.setColumnHeaderView(table);
 		scrollPane.setViewportView(table);
 		
 		
@@ -141,6 +139,7 @@ public class TelaPedido {
 		button_1 = new JButton("Criar novo pedido");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			
 				try {
 					if((int)spinner.getValue() == 0 || (int)spinner_1.getValue() == 0 || textField_2.getText().isEmpty()) {
 						label.setText("Campo vazio");
@@ -153,7 +152,7 @@ public class TelaPedido {
 					}
 					int idCliente = (int)spinner.getValue();
 					int idQuentinha = (int)spinner_1.getValue();
-					String tamanho = textField_2.getText();
+					String tamanho = textField_2.getText().toUpperCase();
 					
 			        // Obtém a data e hora atual
 			        LocalDateTime dateTime = LocalDateTime.now();
@@ -277,7 +276,7 @@ public class TelaPedido {
 						
 				}
 				else
-					label.setText("Nao selecionado");
+					label.setText("Não selecionado");
 				}
 				catch(Exception ex) {
 					label.setText(ex.getMessage());
