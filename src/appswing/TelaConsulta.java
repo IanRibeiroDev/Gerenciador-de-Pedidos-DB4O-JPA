@@ -103,7 +103,7 @@ public class TelaConsulta {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				lblResultados.setText("selecionado="+ (String) table.getValueAt( table.getSelectedRow(), 0));
+				lblResultados.setText("Selecionado="+ (String) table.getValueAt( table.getSelectedRow(), 0));
 			}
 		});
 		table.setGridColor(Color.BLACK);
@@ -135,12 +135,12 @@ public class TelaConsulta {
 			public void actionPerformed(ActionEvent e) {
 				int index = comboBox.getSelectedIndex();
 				if(index<0)
-					lblResultados.setText("Consulta nao selecionada");
+					lblResultados.setText("Consulta não selecionada");
 				else
 					switch(index) {
 					case 0:
 						try {
-							int nPedidos = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero: "));							
+							int nPedidos = Integer.parseInt(JOptionPane.showInputDialog("Digite o número: "));							
 							List<Cliente> resultado1 = Fachada.clientesComMaisDeNPedidos(nPedidos);
 							listagemCliente(resultado1);
 							break;		
@@ -167,7 +167,7 @@ public class TelaConsulta {
 						}
 					case 2: 
 						try {
-							int numero = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero: "));
+							int numero = Integer.parseInt(JOptionPane.showInputDialog("Digite o número: "));
 							List<Quentinha> resultado3 = Fachada.quentinhasPedidasMaisDeNVezes(numero);
 							listagemQuentinhas(resultado3);
 							break;
@@ -179,8 +179,10 @@ public class TelaConsulta {
 						    break;
 						}
 					case 3:
+						
 						try {
-							String data = JOptionPane.showInputDialog("Digite a data (AAAA-MM-DD):");
+							String data = JOptionPane.showInputDialog("Digite a data (AAAA-MM-DD): ");
+							Fachada.pedidosNaDataX(data);
 							List<Pedido> resultado4 = Fachada.pedidosNaDataX(data);
 							listagemPedidos(resultado4);
 							break;
@@ -190,7 +192,7 @@ public class TelaConsulta {
 						}
 					case 4: 
 						try {
-							String tamanho = JOptionPane.showInputDialog("Digite o tamanho: ").toUpperCase();
+							String tamanho = JOptionPane.showInputDialog("Digite o tamanho (P, M ou G): ").toUpperCase();
 							List<Pedido> resultado5 = Fachada.pedidosDeTamanhoX(tamanho);
 							listagemPedidos(resultado5);
 							break;
@@ -207,7 +209,7 @@ public class TelaConsulta {
 
 		comboBox = new JComboBox();
 		comboBox.setFont(new Font("Arial", Font.PLAIN, 12));
-		comboBox.setToolTipText("selecione a consulta");
+		comboBox.setToolTipText("Selecione a consulta");
 		
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Clientes com mais de N pedidos", "Quentinhas pedidas por determinado cliente", "Quentinhas pedidas mais de N vezes","Pedidos feitos em uma data","Pedidos de um tamanho"}));
 		comboBox.setBounds(21, 10, 513, 22);
@@ -216,22 +218,22 @@ public class TelaConsulta {
 	
 	public void listagemCliente(List<Cliente> lista) {
 		try{
-			// model armazena todas as linhas e colunas do table
+			//Model armazena todas as linhas e colunas do table
 			DefaultTableModel model = new DefaultTableModel();
 
-			//adicionar colunas no model
+			//Adicionar colunas no model
 			model.addColumn("Id Cliente");
 			model.addColumn("Nome");
 			model.addColumn("Telefone");
 
-			//adicionar linhas no model
+			//Adicionar linhas no model
 			for(Cliente cli : lista) {
 				model.addRow(new Object[]{cli.getId(),cli.getNome(),cli.getTelefone()} );
 			}
-			//atualizar model no table (visualizacao)
+			//Atualizar model no table (visualizacao)
 			table.setModel(model);
 
-			lblResultados.setText("resultados: "+lista.size()+ " objetos");
+			lblResultados.setText("Resultados: "+lista.size()+ " objetos");
 		}
 		catch(Exception erro){
 			label.setText(erro.getMessage());
@@ -240,19 +242,19 @@ public class TelaConsulta {
 	
 	public void listagemQuentinhas(List<Quentinha> lista) {
 		try{
-			// model armazena todas as linhas e colunas do table
+			//Model armazena todas as linhas e colunas do table
 			DefaultTableModel model = new DefaultTableModel();
 
-			//adicionar colunas no model
+			//Adicionar colunas no model
 			model.addColumn("Id Quentinha");
 			model.addColumn("Descrição");
 			model.addColumn("N vezes pedida");
 
-			//adicionar linhas no model
+			//Adicionar linhas no model
 			for(Quentinha que : lista) {
 				model.addRow(new Object[]{que.getId(),que.getDescricao(),que.getVezesPedida()});
 			}
-			//atualizar model no table (visualizacao)
+			//Atualizar model no table (visualizacao)
 			table.setModel(model);
 
 			lblResultados.setText("Resultados: "+lista.size()+ " objetos");
@@ -269,14 +271,13 @@ public class TelaConsulta {
 
 			//adicionar colunas no model
 			model.addColumn("ID");
-			//model.addColumn("Cliente");
-			//pedido.getCliente().getNome(),
-			model.addColumn("Quentinha-Descrição");
+			model.addColumn("Cliente");
+			model.addColumn("Descrição");
 			model.addColumn("Data");
 
 			//adicionar linhas no model
 			for(Pedido pedido : lista) {
-				model.addRow(new Object[] {pedido.getId(), pedido.getQuentinha(),pedido.getData() });
+				model.addRow(new Object[] {pedido.getId(), pedido.getQuentinha(),pedido.getData(),pedido.getCliente().getNome() });
 			}
 			//atualizar model no table (visualizacao)
 			table.setModel(model);

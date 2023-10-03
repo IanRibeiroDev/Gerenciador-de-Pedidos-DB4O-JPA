@@ -129,19 +129,24 @@ public class TelaLogin {
 			public void actionPerformed(ActionEvent e) {
 				String nome = textField.getText();
 				String senha = textField_1.getText();
-				if(Fachada.localizarUsuario(nome,senha)!=null) {
-					label_2.setText("Usuario já cadastrado");
+				
+				if(!nome.isEmpty() && !senha.isEmpty()) {
+					if(Fachada.localizarUsuario(nome,senha)!=null) {
+						label_2.setText("Usuario já cadastrado");
+					}
+					else
+						try {
+							Fachada.cadastrarUsuario(nome, senha);
+							label_2.setText("Usuario " + nome +" cadastrado");
+						}
+						catch(Exception ex) {
+							label_2.setText("Nao conseguiu criar usuario");
+						}	
 				}
-				else
-					try {
-						Fachada.cadastrarUsuario(nome, senha);
-						label_2.setText("Usuario " + nome +" cadastrado");
-					}
-					catch(Exception ex) {
-						label_2.setText("Nao conseguiu criar usuario");
-					}
-			}
-		});
+				else {
+					label_2.setText("Preencha os campos");
+				}
+		}});
 		btnCadastrar.setBounds(116, 96, 108, 23);
 		frame.getContentPane().add(btnCadastrar);
 	}

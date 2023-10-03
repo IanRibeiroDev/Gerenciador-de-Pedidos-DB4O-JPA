@@ -162,11 +162,16 @@ public class Fachada {
 		return resultados;
 	}
 
-	public static List<Pedido> pedidosNaDataX(String data){	
+	public static List<Pedido> pedidosNaDataX(String data) throws Exception{
+		System.out.println(data);
+		if(data==null) 
+			throw new Exception ("Informe a data");
+	
 		DAO.begin();
 		List<Pedido> resultados =  daopedido.pedidosNaDataX(data);
 		DAO.commit();
 		return resultados;
+		
 	}
 	
 	public static List<Pedido> pedidosDeTamanhoX(String tamanho) throws Exception{

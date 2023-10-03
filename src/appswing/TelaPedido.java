@@ -1,9 +1,3 @@
-/**********************************
- * IFPB - Curso Superior de Tec. em Sist. para Internet
- * POB - Persistencia de Objetos
- * Prof. Fausto Ayres
- *
- */
 package appswing;
 
 import java.awt.Color;
@@ -55,11 +49,7 @@ public class TelaPedido {
 	private JSpinner spinner;
 	private JSpinner spinner_1;
 	
-	
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -112,7 +102,8 @@ public class TelaPedido {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				lblResultados.setText("selecionado="+ (int) table.getValueAt( table.getSelectedRow(), 0));
+				//lblResultados.setText("selecionado="+ (int) table.getValueAt( table.getSelectedRow(), 0));
+				lblResultados.setText("selecionado="+ (String) table.getValueAt( table.getSelectedRow(), 0));
 			}
 		});
 		table.setGridColor(Color.BLACK);
@@ -122,7 +113,10 @@ public class TelaPedido {
 		table.setFillsViewportHeight(true);
 		table.setRowSelectionAllowed(true);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		scrollPane.setColumnHeaderView(table);
+		//scrollPane.setColumnHeaderView(table);
+		scrollPane.setViewportView(table);
+		
+		
 		table.setBorder(new LineBorder(new Color(0, 0, 0)));
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setShowGrid(true);
@@ -297,10 +291,9 @@ public class TelaPedido {
 
 	public void listagem() {
 		try{
-			//ler os carros do banco
 			List<Pedido> lista = Fachada.listarPedidos();
 
-			// o model armazena todas as linhas e colunas do table
+
 			DefaultTableModel model = new DefaultTableModel();
 
 			//adicionar colunas no model
@@ -314,8 +307,8 @@ public class TelaPedido {
 	        table.setDefaultEditor(Object.class, null);
 
 			//adicionar linhas no model
-			for(Pedido pedido : lista) {
-				model.addRow(new Object[]{pedido.getId(),pedido.getData(),pedido.getQuentinha(),pedido.getTamanho(),pedido.getCliente()} );
+			for(Pedido ped : lista) {
+				model.addRow(new Object[]{ped.getId(),ped.getData(),ped.getQuentinha(),ped.getTamanho(),ped.getCliente()} );
 			}
 
 			//atualizar model no table (visualizacao)

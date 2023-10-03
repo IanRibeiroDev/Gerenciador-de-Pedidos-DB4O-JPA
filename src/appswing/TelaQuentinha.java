@@ -222,9 +222,9 @@ public class TelaQuentinha {
 			DefaultTableModel model = new DefaultTableModel();
 
 			//adicionar colunas no model
-			model.addColumn("id");
-			model.addColumn("descricao");
-			model.addColumn("qtd de vezes pedida");
+			model.addColumn("ID");
+			model.addColumn("Descrição");
+			model.addColumn("Qtd de vezes pedida");
 			
 		    // Define a tabela como não editável
 	        table.setDefaultEditor(Object.class, null);
@@ -237,7 +237,7 @@ public class TelaQuentinha {
 			//atualizar model no table (visualizacao)
 			table.setModel(model);
 
-			lblResultados.setText("resultados: "+lista.size()+ " objetos");
+			lblResultados.setText("Resultados: "+lista.size()+ " objetos");
 		}
 		catch(Exception erro){
 			label.setText(erro.getMessage());

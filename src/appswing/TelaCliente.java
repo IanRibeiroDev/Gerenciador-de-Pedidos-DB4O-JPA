@@ -1,9 +1,3 @@
-/**********************************
- * IFPB - Curso Superior de Tec. em Sist. para Internet
- * POB - Persistencia de Objetos
- * Prof. Fausto Ayres
- *
- */
 package appswing;
 
 import java.awt.Color;
@@ -49,9 +43,6 @@ public class TelaCliente {
 
 	private JButton button_3;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -104,7 +95,7 @@ public class TelaCliente {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				lblResultados.setText("selecionado="+ (String) table.getValueAt( table.getSelectedRow(), 0));
+				lblResultados.setText("Selecionado="+ (String) table.getValueAt( table.getSelectedRow(), 0));
 			}
 		});
 		table.setGridColor(Color.BLACK);
@@ -189,7 +180,8 @@ public class TelaCliente {
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					if (table.getSelectedRow() >= 0){	
+					if (table.getSelectedRow() >= 0){
+						label.setText("");
 						int id = (int) table.getValueAt( table.getSelectedRow(), 0);
 						
 						Fachada.excluirCliente(id);
@@ -199,7 +191,7 @@ public class TelaCliente {
 						listagem();
 					}
 					else
-						label.setText("Nao selecionado");
+						label.setText("Não selecionado");
 				}
 				catch(Exception ex) {
 					label.setText(ex.getMessage());
@@ -215,7 +207,8 @@ public class TelaCliente {
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					if (table.getSelectedRow() >= 0){	
+					if (table.getSelectedRow() >= 0){
+						label.setText("");
 						int id = (int) table.getValueAt( table.getSelectedRow(), 0);
 						
 						Cliente cliente = Fachada.localizarCliente(id);
@@ -223,7 +216,7 @@ public class TelaCliente {
 						if(cliente !=  null) {
 							String texto= "";
 							if(cliente.getListaPedidos().size()==0)
-								texto = "Nao possui pedidos";
+								texto = "Não possui pedidos";
 							else {
 								List<Quentinha> quentinhasPedidas = Fachada.consultarQuentinhasPedidasPorCliente(id);
 								
@@ -251,18 +244,21 @@ public class TelaCliente {
 			public void actionPerformed(ActionEvent e) {
 				try{
 					if (table.getSelectedRow() >= 0) {
-						int idCliente = (int) table.getValueAt( table.getSelectedRow(), 0);
+						int idCliente = (int) table.getValueAt(table.getSelectedRow(), 0);
 						
-						String nome = textField.getText();
-						String telefone = textField_1.getText().replaceAll("[^0-9]", "");;
+						if(textField.getText().isEmpty() && textField_1.getText().isEmpty()) {
+							label.setText("Nada definido para alterar");
+							return;
+						}
 						
-						
-						//Caso em que tanto o telefone quandoo nome serão alterados
-						if(nome != "" && telefone != "") {				
-							if (telefone.length()<8) {
+						//Caso em que tanto o telefone quando nome serão alterados
+						if(!textField.getText().isEmpty() && !textField_1.getText().isEmpty()){				
+							if (textField_1.getText().length()<8) {
 								label.setText("O telefone precisa ter pelo menos 8 dígitos.");
 								return;
 							}
+							String nome = textField.getText();
+							String telefone = textField_1.getText().replaceAll("[^0-9]", "");
 							
 							Fachada.alterarNomeCliente(idCliente, nome);
 							Fachada.alterarTelefoneCliente(idCliente, telefone);
@@ -273,7 +269,8 @@ public class TelaCliente {
 						}
 						
 						//Apenas nome será alterado
-						if(nome != "") {
+						if(!textField.getText().isEmpty()) {
+							String nome = textField.getText();
 							Fachada.alterarNomeCliente(idCliente, nome);
 							textField.setText("");
 							label.setText("Cliente alterado");
@@ -281,7 +278,8 @@ public class TelaCliente {
 						}
 						
 						//Apenas telefone será alterado
-						if(telefone != "") {				
+						if(!textField_1.getText().isEmpty()) {
+							String telefone = textField_1.getText().replaceAll("[^0-9]", "");
 							if (telefone.length()<8) {
 								label.setText("O telefone precisa ter pelo menos 8 dígitos.");
 								return;
@@ -292,13 +290,10 @@ public class TelaCliente {
 							listagem();
 						}
 						
-						if(nome == "" && telefone == "") {
-							label.setText("Nada definido para alterar");
-							return;
-						}		
+								
 				}
 				else
-					label.setText("Nao selecionado");
+					label.setText("Não selecionado");
 				}
 				catch(Exception ex) {
 					label.setText(ex.getMessage());
@@ -314,7 +309,6 @@ public class TelaCliente {
 		try{
 			List<Cliente> lista = Fachada.listarClientes();
 
-			// model armazena todas as linhas e colunas do table
 			DefaultTableModel model = new DefaultTableModel();
 
 			//adicionar colunas no model
@@ -322,18 +316,18 @@ public class TelaCliente {
 			model.addColumn("Nome");
 			model.addColumn("Telefone");
 			
-		    // Define a tabela como não editável
+		    //Define a tabela como não editável
 	        table.setDefaultEditor(Object.class, null);
 
-			//adicionar linhas no model
+			//Adicionar linhas no model
 			for(Cliente cli : lista) {
 				model.addRow(new Object[]{cli.getId(), cli.getNome(),cli.getTelefone()} );
 			}
 
-			//atualizar model no table (visualizacao)
+			//Atualizar model no table (visualizacao)
 			table.setModel(model);
 
-			lblResultados.setText("resultados: "+lista.size()+ " objetos");
+			lblResultados.setText("Resultados: "+lista.size()+ " objetos");
 		}
 		catch(Exception erro){
 			label.setText(erro.getMessage());
