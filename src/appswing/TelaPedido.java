@@ -50,7 +50,7 @@ public class TelaPedido {
 	private JLabel lblIdDoCliente;
 	private JLabel lblQuent;
 	private JLabel lblTamanho;
-	private JLabel label_6;
+	private JLabel lblResultados;
 	private JSpinner spinner;
 	private JSpinner spinner_1;
 	
@@ -84,6 +84,7 @@ public class TelaPedido {
 	 */
 	private void initialize() {
 		frame = new JDialog();
+		frame.setFont(new Font("Arial", Font.PLAIN, 12));
 		frame.setModal(true);
 		frame.setResizable(false);
 		frame.setTitle("Pedido");
@@ -110,17 +111,17 @@ public class TelaPedido {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				label_6.setText("selecionado="+ (int) table.getValueAt( table.getSelectedRow(), 0));
+				lblResultados.setText("selecionado="+ (int) table.getValueAt( table.getSelectedRow(), 0));
 			}
 		});
 		table.setGridColor(Color.BLACK);
 		table.setRequestFocusEnabled(false);
 		table.setFocusable(false);
-		table.setBackground(new Color(144, 238, 144));
+		table.setBackground(new Color(209, 254, 214));
 		table.setFillsViewportHeight(true);
 		table.setRowSelectionAllowed(true);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		scrollPane.setViewportView(table);
+		scrollPane.setColumnHeaderView(table);
 		table.setBorder(new LineBorder(new Color(0, 0, 0)));
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setShowGrid(true);
@@ -131,14 +132,15 @@ public class TelaPedido {
 		label.setBounds(12, 355, 688, 14);
 		frame.getContentPane().add(label);
 
-		label_6 = new JLabel("resultados:");
-		label_6.setBounds(21, 190, 431, 14);
-		frame.getContentPane().add(label_6);
+		lblResultados = new JLabel("Resultados:");
+		lblResultados.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblResultados.setBounds(31, 201, 431, 14);
+		frame.getContentPane().add(lblResultados);
 
 		lblIdDoCliente = new JLabel("Id do Cliente:");
 		lblIdDoCliente.setHorizontalAlignment(SwingConstants.LEFT);
-		lblIdDoCliente.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblIdDoCliente.setBounds(56, 269, 89, 14);
+		lblIdDoCliente.setFont(new Font("Arial", Font.BOLD, 14));
+		lblIdDoCliente.setBounds(47, 263, 114, 26);
 		frame.getContentPane().add(lblIdDoCliente);
 
 		button_1 = new JButton("Criar novo pedido");
@@ -174,17 +176,17 @@ public class TelaPedido {
 				}
 			}
 		});
-		button_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		button_1.setBounds(379, 322, 153, 23);
+		button_1.setFont(new Font("Arial", Font.PLAIN, 14));
+		button_1.setBounds(384, 309, 179, 37);
 		frame.getContentPane().add(button_1);
 
 		lblQuent = new JLabel("Id Quentinha:");
 		lblQuent.setHorizontalAlignment(SwingConstants.LEFT);
-		lblQuent.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblQuent.setBounds(200, 269, 101, 14);
+		lblQuent.setFont(new Font("Arial", Font.BOLD, 14));
+		lblQuent.setBounds(235, 258, 101, 36);
 		frame.getContentPane().add(lblQuent);
 
-		btnApagarPedido = new JButton("Apagar pedido");
+		btnApagarPedido = new JButton("Apagar pedido selecionado");
 		btnApagarPedido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -203,13 +205,13 @@ public class TelaPedido {
 				}
 			}
 		});
-		btnApagarPedido.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnApagarPedido.setBounds(259, 214, 206, 23);
+		btnApagarPedido.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnApagarPedido.setBounds(255, 213, 206, 36);
 		frame.getContentPane().add(btnApagarPedido);
 
 
 		textField_2 = new JTextField();
-		textField_2.setBounds(459, 257, 130, 19);
+		textField_2.setBounds(560, 266, 82, 24);
 		frame.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 
@@ -217,17 +219,17 @@ public class TelaPedido {
 		textPane.setBounds(47, 308, 1, 16);
 		frame.getContentPane().add(textPane);
 
-		lblTamanho = new JLabel("Tamanho:");
-		lblTamanho.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblTamanho.setBounds(392, 268, 89, 16);
+		lblTamanho = new JLabel("Tamanho (P,M ou G):");
+		lblTamanho.setFont(new Font("Arial", Font.BOLD, 14));
+		lblTamanho.setBounds(406, 268, 189, 16);
 		frame.getContentPane().add(lblTamanho);
 		
 		spinner = new JSpinner();
-		spinner.setBounds(145, 268, 30, 20);
+		spinner.setBounds(150, 265, 45, 26);
 		frame.getContentPane().add(spinner);
 		
 		spinner_1 = new JSpinner();
-		spinner_1.setBounds(296, 268, 30, 20);
+		spinner_1.setBounds(333, 265, 40, 25);
 		frame.getContentPane().add(spinner_1);
 		
 		JButton button_1_1 = new JButton("Alterar pedido");
@@ -287,8 +289,8 @@ public class TelaPedido {
 				}
 			}
 		});
-		button_1_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		button_1_1.setBounds(173, 322, 153, 23);
+		button_1_1.setFont(new Font("Arial", Font.PLAIN, 14));
+		button_1_1.setBounds(160, 310, 179, 35);
 		frame.getContentPane().add(button_1_1);
 	}
 
@@ -318,7 +320,7 @@ public class TelaPedido {
 			//atualizar model no table (visualizacao)
 			table.setModel(model);
 
-			label_6.setText("resultados: "+lista.size()+ " objetos");
+			lblResultados.setText("resultados: "+lista.size()+ " objetos");
 		}
 		catch(Exception erro){
 			label.setText(erro.getMessage());

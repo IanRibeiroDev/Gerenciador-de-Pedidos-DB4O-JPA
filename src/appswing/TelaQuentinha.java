@@ -37,12 +37,11 @@ public class TelaQuentinha {
 	private JTable table;
 	private JScrollPane scrollPane;
 	private JTextField textField;
-	private JButton button;
 	private JButton button_1;
 	private JButton button_2;
 	private JLabel label;
 	private JLabel lblDescrio;
-	private JLabel label_4;
+	private JLabel lblResultados;
 
 	/**
 	 * Launch the application.
@@ -72,6 +71,7 @@ public class TelaQuentinha {
 	 */
 	private void initialize() {
 		frame = new JDialog();
+		frame.setFont(new Font("Arial", Font.PLAIN, 14));
 		frame.setModal(true);
 
 		frame.setResizable(false);
@@ -99,13 +99,13 @@ public class TelaQuentinha {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				label_4.setText("selecionado="+ (String) table.getValueAt( table.getSelectedRow(), 0));
+				lblResultados.setText("selecionado="+ (String) table.getValueAt( table.getSelectedRow(), 0));
 			}
 		});
 		table.setGridColor(Color.BLACK);
 		table.setRequestFocusEnabled(false);
 		table.setFocusable(false);
-		table.setBackground(Color.YELLOW);
+		table.setBackground(new Color(209, 254, 214));
 		table.setFillsViewportHeight(true);
 		table.setRowSelectionAllowed(true);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -120,20 +120,21 @@ public class TelaQuentinha {
 		label.setBounds(21, 321, 688, 14);
 		frame.getContentPane().add(label);
 
-		label_4 = new JLabel("resultados:");
-		label_4.setBounds(21, 190, 431, 14);
-		frame.getContentPane().add(label_4);
+		lblResultados = new JLabel("Resultados:");
+		lblResultados.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblResultados.setBounds(31, 191, 431, 14);
+		frame.getContentPane().add(lblResultados);
 
 		lblDescrio = new JLabel("Descrição:");
 		lblDescrio.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDescrio.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblDescrio.setBounds(66, 269, 71, 14);
+		lblDescrio.setFont(new Font("Arial", Font.BOLD, 14));
+		lblDescrio.setBounds(35, 255, 80, 42);
 		frame.getContentPane().add(lblDescrio);
 
 		textField = new JTextField();
 		textField.setFont(new Font("Dialog", Font.PLAIN, 12));
 		textField.setColumns(10);
-		textField.setBounds(147, 266, 195, 20);
+		textField.setBounds(114, 261, 198, 31);
 		frame.getContentPane().add(textField);
 
 		button_1 = new JButton("Criar nova quentinha");
@@ -154,19 +155,9 @@ public class TelaQuentinha {
 				}
 			}
 		});
-		button_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		button_1.setBounds(525, 265, 153, 23);
+		button_1.setFont(new Font("Arial", Font.PLAIN, 14));
+		button_1.setBounds(519, 258, 176, 37);
 		frame.getContentPane().add(button_1);
-
-		button = new JButton("Listar");
-		button.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				listagem();
-			}
-		});
-		button.setBounds(305, 10, 89, 23);
-		frame.getContentPane().add(button);
 
 		button_2 = new JButton("Apagar selecionada");
 		button_2.addActionListener(new ActionListener() {
@@ -177,8 +168,7 @@ public class TelaQuentinha {
 						int id = (int) table.getValueAt( table.getSelectedRow(), 0);
 
 						Fachada.excluirQuentinha(id);
-						label.setText("Quentinha apagada" );
-						textField_1.setText("");
+						label.setText("Quentinha apagada");
 						listagem();
 					}
 					else
@@ -189,8 +179,8 @@ public class TelaQuentinha {
 				}
 			}
 		});
-		button_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		button_2.setBounds(281, 215, 171, 23);
+		button_2.setFont(new Font("Arial", Font.PLAIN, 14));
+		button_2.setBounds(268, 201, 184, 37);
 		frame.getContentPane().add(button_2);
 		
 
@@ -220,8 +210,8 @@ public class TelaQuentinha {
 				
 			}
 		});
-		button_2_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		button_2_1.setBounds(352, 265, 171, 23);
+		button_2_1.setFont(new Font("Arial", Font.PLAIN, 14));
+		button_2_1.setBounds(335, 258, 171, 37);
 		frame.getContentPane().add(button_2_1);
 	}
 
@@ -248,7 +238,7 @@ public class TelaQuentinha {
 			//atualizar model no table (visualizacao)
 			table.setModel(model);
 
-			label_4.setText("resultados: "+lista.size()+ " objetos");
+			lblResultados.setText("resultados: "+lista.size()+ " objetos");
 		}
 		catch(Exception erro){
 			label.setText(erro.getMessage());

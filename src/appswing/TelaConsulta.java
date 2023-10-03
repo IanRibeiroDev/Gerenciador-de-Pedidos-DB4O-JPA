@@ -32,8 +32,9 @@ import javax.swing.table.DefaultTableModel;
 
 import com.db4o.ObjectContainer;
 
-import modelo.Aluguel;
-import modelo.Carro;
+import modelo.Cliente;
+import modelo.Pedido;
+import modelo.Quentinha;
 import regras_negocio.Fachada;
 
 public class TelaConsulta {
@@ -42,10 +43,11 @@ public class TelaConsulta {
 	private JScrollPane scrollPane;
 	private JButton button;
 	private JLabel label;
-	private JLabel label_4;
+	private JLabel lblResultados;
 
 	private ObjectContainer manager;
 	private JComboBox comboBox;
+	
 
 	/**
 	 * Launch the application.
@@ -75,9 +77,10 @@ public class TelaConsulta {
 	 */
 	private void initialize() {
 		frame = new JDialog();
-		frame.setModal(true);
-
 		frame.setResizable(false);
+		frame.setFont(new Font("Arial", Font.PLAIN, 14));
+		frame.setOpacity(2.0f);
+		frame.setModal(true);
 		frame.setTitle("Consulta");
 		frame.setBounds(100, 100, 729, 385);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -101,13 +104,13 @@ public class TelaConsulta {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				label_4.setText("selecionado="+ (String) table.getValueAt( table.getSelectedRow(), 0));
+				lblResultados.setText("selecionado="+ (String) table.getValueAt( table.getSelectedRow(), 0));
 			}
 		});
 		table.setGridColor(Color.BLACK);
 		table.setRequestFocusEnabled(false);
 		table.setFocusable(false);
-		table.setBackground(Color.LIGHT_GRAY);
+		table.setBackground(new Color(204, 204, 255));
 		table.setFillsViewportHeight(true);
 		table.setRowSelectionAllowed(true);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -122,99 +125,154 @@ public class TelaConsulta {
 		label.setBounds(21, 321, 688, 14);
 		frame.getContentPane().add(label);
 
-		label_4 = new JLabel("resultados:");
-		label_4.setBounds(21, 190, 431, 14);
-		frame.getContentPane().add(label_4);
+		lblResultados = new JLabel("Resultados:");
+		lblResultados.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblResultados.setBounds(31, 201, 431, 14);
+		frame.getContentPane().add(lblResultados);
 
 		button = new JButton("Consultar");
-		button.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		button.setFont(new Font("Arial", Font.PLAIN, 13));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int index = comboBox.getSelectedIndex();
 				if(index<0)
-					label_4.setText("consulta nao selecionada");
+					lblResultados.setText("consulta nao selecionada");
 				else
 					switch(index) {
-					case 0: 
-						List<Aluguel> resultado1 = Fachada.alugueisFinalizados();
-						listagemAluguel(resultado1);
-						break;
+					case 0:
+						try {
+							int nPedidos = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero: "));
+							List<Cliente> resultado1 = Fachada.clientesComMaisDeNPedidos(nPedidos);
+							listagemCliente(resultado1);
+							break;
+						}catch (Exception e1) {
+							lblResultados.setText(e1.getMessage());
+						}
 					case 1: 
-						String modelo = JOptionPane.showInputDialog("digite o modelo");
-						List<Aluguel> resultado2 = Fachada.alugueisModelo(modelo);
-						listagemAluguel(resultado2);
-						break;
+						try {
+							int idCliente = Integer.parseInt(JOptionPane.showInputDialog("Digite o id do Cliente: "));
+							List<Quentinha> resultado2;
+							resultado2 = Fachada.consultarQuentinhasPedidasPorCliente(idCliente);
+							listagemQuentinhas(resultado2);
+							break;
+						} catch (Exception e1) {
+							lblResultados.setText(e1.getMessage());
+						}
 					case 2: 
-						String n = JOptionPane.showInputDialog("digite N");
-						int numero = Integer.parseInt(n);
-						List<Carro> resultado3 = Fachada.carrosNAlugueis(numero);
-						listagemCarro(resultado3);
-						break;
-
+						try {
+							int numero = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero: "));
+							List<Quentinha> resultado3 = Fachada.quentinhasPedidasMaisDeNVezes(numero);
+							listagemQuentinhas(resultado3);
+							break;
+						} catch (Exception e1) {
+							lblResultados.setText(e1.getMessage());
+						}
+					case 3:
+						try {
+							String data = JOptionPane.showInputDialog("Digite a data: ");
+							List<Pedido> resultado4 = Fachada.pedidosNaDataX(data);
+							listagemPedidos(resultado4);
+							break;
+						} catch (Exception e1) {
+							lblResultados.setText(e1.getMessage());
+						}
+					case 4: 
+						try {
+							String tamanho = JOptionPane.showInputDialog("Digite o tamanho: ").toUpperCase();
+							List<Pedido> resultado5 = Fachada.pedidosDeTamanhoX(tamanho);
+							listagemPedidos(resultado5);
+							break;
+						} catch (Exception e1) {
+							lblResultados.setText(e1.getMessage());
+						}
 					}
-
 			}
 		});
-		button.setBounds(606, 10, 89, 23);
+		button.setBounds(544, 10, 151, 23);
 		frame.getContentPane().add(button);
+		
 
 		comboBox = new JComboBox();
+		comboBox.setFont(new Font("Arial", Font.PLAIN, 12));
 		comboBox.setToolTipText("selecione a consulta");
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"alugueis finalizados", "alugueis de um determinado modelo de carro", "carros que possuem N alugueis"}));
+		
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Clientes com mais de N pedidos", "Quentinhas pedidas por determinado cliente", "Quentinhas pedidas mais de N vezes","Pedidos feitos em uma data","Pedidos de um tamanho"}));
 		comboBox.setBounds(21, 10, 513, 22);
 		frame.getContentPane().add(comboBox);
 	}
-
-	public void listagemAluguel(List<Aluguel> lista) {
+	
+	public void listagemCliente(List<Cliente> lista) {
 		try{
-			// o model armazena todas as linhas e colunas do table
+			// model armazena todas as linhas e colunas do table
 			DefaultTableModel model = new DefaultTableModel();
 
 			//adicionar colunas no model
-			model.addColumn("id");
-			model.addColumn("nome");
-			model.addColumn("placa");
-			model.addColumn("data inicial");
-			model.addColumn("data final");
-			model.addColumn("total a pagar");
-			model.addColumn("finalizado");
+			model.addColumn("Id Cliente");
+			model.addColumn("Nome");
+			model.addColumn("Telefone");
 
 			//adicionar linhas no model
-			for(Aluguel aluguel : lista) {
-				model.addRow(new Object[]{aluguel.getId(), aluguel.getCliente().getNome(), aluguel.getCarro().getPlaca(), aluguel.getDatainicio(), aluguel.getDatafim(), aluguel.getValor(), aluguel.isFinalizado()});
+			for(Cliente cli : lista) {
+				model.addRow(new Object[]{cli.getId(),cli.getNome(),cli.getTelefone()} );
 			}
 			//atualizar model no table (visualizacao)
 			table.setModel(model);
 
-			label_4.setText("resultados: "+lista.size()+ " objetos");
+			lblResultados.setText("resultados: "+lista.size()+ " objetos");
 		}
 		catch(Exception erro){
 			label.setText(erro.getMessage());
 		}
 	}
 	
-	public void listagemCarro(List<Carro> lista) {
+	public void listagemQuentinhas(List<Quentinha> lista) {
 		try{
 			// model armazena todas as linhas e colunas do table
 			DefaultTableModel model = new DefaultTableModel();
 
 			//adicionar colunas no model
-			model.addColumn("placa");
-			model.addColumn("modelo");
-			model.addColumn("alugado");
+			model.addColumn("Id Quentinha");
+			model.addColumn("Descrição");
+			model.addColumn("N vezes pedida");
 
 			//adicionar linhas no model
-			for(Carro car : lista) {
-				model.addRow(new Object[]{car.getPlaca(), car.getModelo(), car.isAlugado()} );
+			for(Quentinha que : lista) {
+				model.addRow(new Object[]{que.getId(),que.getDescricao(),que.getVezesPedida()});
 			}
 			//atualizar model no table (visualizacao)
 			table.setModel(model);
 
-			label_4.setText("resultados: "+lista.size()+ " objetos");
+			lblResultados.setText("resultados: "+lista.size()+ " objetos");
 		}
 		catch(Exception erro){
 			label.setText(erro.getMessage());
 		}
 	}
+	
+	public void listagemPedidos(List<Pedido> lista) {
+		try{
+			// o model armazena todas as linhas e colunas do table
+			DefaultTableModel model = new DefaultTableModel();
+
+			//adicionar colunas no model
+			model.addColumn("id");
+			model.addColumn("Cliente");
+			model.addColumn("Quentinha-Descrição");
+			model.addColumn("Data");
+
+			//adicionar linhas no model
+			for(Pedido pedido : lista) {
+				model.addRow(new Object[] {pedido.getId(), pedido.getCliente().getNome(), pedido.getQuentinha(),pedido.getData() });
+			}
+			//atualizar model no table (visualizacao)
+			table.setModel(model);
+
+			lblResultados.setText("resultados: "+lista.size()+ " objetos");
+		}
+		catch(Exception erro){
+			label.setText(erro.getMessage());
+		}
+	}
+
 
 }

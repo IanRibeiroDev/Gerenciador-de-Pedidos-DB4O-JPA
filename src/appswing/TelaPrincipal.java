@@ -5,6 +5,7 @@ package appswing;
  * Prof. Fausto Maranh�o Ayres
  **********************************/
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -21,11 +22,13 @@ import regras_negocio.Fachada;
 
 public class TelaPrincipal {
 	private JFrame frame;
-	private JMenu mnCarro;
+	private JMenu mnQuentinha;
 	private JMenu mnCliente;
-	private JMenu mnAluguel;
+	private JMenu mnPedido;
 	private JMenu mnConsulta;
-	private JLabel label;
+	private JLabel lblSistemaDeQuentinhas;
+	
+	
 
 
 
@@ -50,7 +53,7 @@ public class TelaPrincipal {
 	 */
 	public TelaPrincipal() {
 		initialize();
-		frame.setTitle("Locadora - usuario: "+ Fachada.logado.getNome());
+		frame.setTitle("Quentinha - cliente: "+ Fachada.logado.getNome());
 		frame.setVisible(true);
 	}
 
@@ -59,35 +62,38 @@ public class TelaPrincipal {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setTitle("Locadora");
+		frame.getContentPane().setBackground(new Color(254, 221, 171));
+		frame.setResizable(false);
+		frame.setTitle("Restaurante");
 		frame.setBounds(100, 100, 450, 363);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		label = new JLabel("");
-		label.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setText("Inicializando...");
-		label.setBounds(0, 0, 467, 302);
+		lblSistemaDeQuentinhas = new JLabel("");
+		lblSistemaDeQuentinhas.setFont(new Font("Arial", Font.PLAIN, 26));
+		lblSistemaDeQuentinhas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSistemaDeQuentinhas.setText("Inicializando...");
+		lblSistemaDeQuentinhas.setBounds(10, 53, 426, 188);
 		//label.setBounds(0, 0, frame.getWidth(), frame.getHeight());
-		ImageIcon imagem = new ImageIcon(getClass().getResource("/arquivos/imagem.png"));
-		imagem = new ImageIcon(imagem.getImage().getScaledInstance(label.getWidth(),label.getHeight(), Image.SCALE_DEFAULT));//		label.setIcon(fotos);
-		label.setIcon(imagem);
-		frame.getContentPane().add(label);
-		frame.setResizable(false);
+		ImageIcon imagem = new ImageIcon(getClass().getResource("/img/almoco.png"));
+		imagem = new ImageIcon(imagem.getImage().getScaledInstance(lblSistemaDeQuentinhas.getWidth(),lblSistemaDeQuentinhas.getHeight(), Image.SCALE_DEFAULT));//		label.setIcon(fotos);
+		lblSistemaDeQuentinhas.setIcon(imagem);
+		frame.getContentPane().add(lblSistemaDeQuentinhas);
 
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
-		mnCarro = new JMenu("Carro");
-		mnCarro.addMouseListener(new MouseAdapter() {
+		mnQuentinha = new JMenu("Quentinha");
+		mnQuentinha.setFont(new Font("Arial", Font.PLAIN, 12));
+		mnQuentinha.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaCarro tela = new TelaCarro();
+				TelaQuentinha tela = new TelaQuentinha();
 			}
 		});
-		menuBar.add(mnCarro);
+		menuBar.add(mnQuentinha);
 
 		mnCliente = new JMenu("Cliente");
+		mnCliente.setFont(new Font("Arial", Font.PLAIN, 12));
 		mnCliente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -96,16 +102,18 @@ public class TelaPrincipal {
 		});
 		menuBar.add(mnCliente);
 		
-		mnAluguel = new JMenu("Aluguel");
-		mnAluguel.addMouseListener(new MouseAdapter() {
+		mnPedido = new JMenu("Pedido");
+		mnPedido.setFont(new Font("Arial", Font.PLAIN, 12));
+		mnPedido.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				TelaPedido tela = new TelaPedido();
 			}
 		});
-		menuBar.add(mnAluguel);
+		menuBar.add(mnPedido);
 		
 		mnConsulta = new JMenu("Consultas");
+		mnConsulta.setFont(new Font("Arial", Font.PLAIN, 12));
 		mnConsulta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

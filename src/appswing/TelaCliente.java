@@ -30,7 +30,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import modelo.Aluguel;
 import modelo.Cliente;
 import modelo.Quentinha;
 import regras_negocio.Fachada;
@@ -41,13 +40,12 @@ public class TelaCliente {
 	private JScrollPane scrollPane;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JButton button;
 	private JButton btnCadastrarCliente;
 	private JButton button_2;
 	private JLabel label;
 	private JLabel lblNome;
 	private JLabel lblTelefone;
-	private JLabel label_4;
+	private JLabel lblResultados;
 
 	private JButton button_3;
 
@@ -79,6 +77,7 @@ public class TelaCliente {
 	 */
 	private void initialize() {
 		frame = new JDialog();
+		frame.setFont(new Font("Arial", Font.PLAIN, 12));
 		frame.setModal(true);
 		
 		frame.setResizable(false);
@@ -106,13 +105,13 @@ public class TelaCliente {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				label_4.setText("selecionado="+ (String) table.getValueAt( table.getSelectedRow(), 0));
+				lblResultados.setText("selecionado="+ (String) table.getValueAt( table.getSelectedRow(), 0));
 			}
 		});
 		table.setGridColor(Color.BLACK);
 		table.setRequestFocusEnabled(false);
 		table.setFocusable(false);
-		table.setBackground(Color.ORANGE);
+		table.setBackground(new Color(209, 254, 214));
 		table.setFillsViewportHeight(true);
 		table.setRowSelectionAllowed(true);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -127,20 +126,21 @@ public class TelaCliente {
 		label.setBounds(47, 315, 688, 14);
 		frame.getContentPane().add(label);
 
-		label_4 = new JLabel("resultados:");
-		label_4.setBounds(21, 190, 431, 14);
-		frame.getContentPane().add(label_4);
+		lblResultados = new JLabel("Resultados:");
+		lblResultados.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblResultados.setBounds(31, 196, 431, 14);
+		frame.getContentPane().add(lblResultados);
 
 		lblNome = new JLabel("Nome:");
 		lblNome.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNome.setBounds(21, 269, 71, 14);
+		lblNome.setFont(new Font("Arial", Font.BOLD, 14));
+		lblNome.setBounds(21, 274, 71, 14);
 		frame.getContentPane().add(lblNome);
 
 		textField = new JTextField();
 		textField.setFont(new Font("Dialog", Font.PLAIN, 12));
 		textField.setColumns(10);
-		textField.setBounds(68, 264, 195, 20);
+		textField.setBounds(68, 264, 195, 34);
 		frame.getContentPane().add(textField);
 
 		btnCadastrarCliente = new JButton("Cadastrar cliente");
@@ -169,29 +169,19 @@ public class TelaCliente {
 			}
 		});
 		btnCadastrarCliente.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnCadastrarCliente.setBounds(525, 265, 153, 23);
+		btnCadastrarCliente.setBounds(526, 264, 169, 34);
 		frame.getContentPane().add(btnCadastrarCliente);
-
-		button = new JButton("Listar");
-		button.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				listagem();
-			}
-		});
-		button.setBounds(308, 11, 89, 23);
-		frame.getContentPane().add(button);
 
 		lblTelefone = new JLabel("Telefone:");
 		lblTelefone.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTelefone.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblTelefone.setBounds(281, 269, 63, 14);
+		lblTelefone.setFont(new Font("Arial", Font.BOLD, 14));
+		lblTelefone.setBounds(273, 274, 125, 14);
 		frame.getContentPane().add(lblTelefone);
 
 		textField_1 = new JTextField();
 		textField_1.setFont(new Font("Dialog", Font.PLAIN, 12));
 		textField_1.setColumns(10);
-		textField_1.setBounds(336, 264, 168, 20);
+		textField_1.setBounds(348, 264, 168, 34);
 		frame.getContentPane().add(textField_1);
 
 		button_2 = new JButton("Excluir cliente");
@@ -213,12 +203,12 @@ public class TelaCliente {
 				}
 			}
 		});
-		button_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		button_2.setBounds(333, 214, 171, 23);
+		button_2.setFont(new Font("Arial", Font.PLAIN, 12));
+		button_2.setBounds(345, 220, 171, 34);
 		frame.getContentPane().add(button_2);
 
 		button_3 = new JButton("Exibir pedidos de cliente selecionado");
-		button_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		button_3.setFont(new Font("Arial", Font.PLAIN, 12));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -250,7 +240,7 @@ public class TelaCliente {
 				}
 			}
 		});
-		button_3.setBounds(56, 214, 219, 23);
+		button_3.setBounds(68, 220, 267, 34);
 		frame.getContentPane().add(button_3);
 		
 		JButton btnAlterarCliente = new JButton("Alterar cliente");
@@ -308,8 +298,8 @@ public class TelaCliente {
 				}
 			}
 		});
-		btnAlterarCliente.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnAlterarCliente.setBounds(525, 213, 153, 23);
+		btnAlterarCliente.setFont(new Font("Arial", Font.PLAIN, 12));
+		btnAlterarCliente.setBounds(525, 220, 170, 35);
 		frame.getContentPane().add(btnAlterarCliente);
 	}
 
@@ -336,7 +326,7 @@ public class TelaCliente {
 			//atualizar model no table (visualizacao)
 			table.setModel(model);
 
-			label_4.setText("resultados: "+lista.size()+ " objetos");
+			lblResultados.setText("resultados: "+lista.size()+ " objetos");
 		}
 		catch(Exception erro){
 			label.setText(erro.getMessage());
