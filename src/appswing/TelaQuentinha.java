@@ -73,7 +73,6 @@ public class TelaQuentinha {
 		frame = new JDialog();
 		frame.setFont(new Font("Arial", Font.PLAIN, 14));
 		frame.setModal(true);
-
 		frame.setResizable(false);
 		frame.setTitle("Quentinha");
 		frame.setBounds(100, 100, 729, 385);

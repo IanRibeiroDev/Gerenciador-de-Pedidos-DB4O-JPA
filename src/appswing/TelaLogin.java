@@ -1,6 +1,7 @@
 package appswing;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -13,7 +14,6 @@ import javax.swing.JTextField;
 
 import modelo.Usuario;
 import regras_negocio.Fachada;
-import java.awt.Font;
 
 public class TelaLogin {
 
@@ -55,7 +55,6 @@ public class TelaLogin {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setFont(new Font("Arial", Font.PLAIN, 12));
-		frame.setOpacity(2.0f);
 		frame.setTitle("Login");
 		frame.setBounds(100, 100, 248, 215);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -84,7 +83,6 @@ public class TelaLogin {
 		label.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
 		label.setBounds(10, 33, 66, 14);
 		frame.getContentPane().add(label);
-
 		label_1 = new JLabel("Senha");
 		label_1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
 		label_1.setBounds(10, 65, 46, 14);
@@ -137,7 +135,7 @@ public class TelaLogin {
 				else
 					try {
 						Fachada.cadastrarUsuario(nome, senha);
-						label_2.setText("Usuario " + nome +" cadastrado com sucesso");
+						label_2.setText("Usuario " + nome +" cadastrado");
 					}
 					catch(Exception ex) {
 						label_2.setText("Nao conseguiu criar usuario");

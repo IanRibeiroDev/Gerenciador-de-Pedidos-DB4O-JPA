@@ -169,8 +169,11 @@ public class Fachada {
 		return resultados;
 	}
 	
-	public static List<Pedido> pedidosDeTamanhoX(String tamanho){
+	public static List<Pedido> pedidosDeTamanhoX(String tamanho) throws Exception{
 		DAO.begin();
+		 if (!("P".equals(tamanho) || "M".equals(tamanho) || "G".equals(tamanho))) {
+			throw new Exception ("Tamanho precisa ser P,M ou G");
+		}
 		List<Pedido> resultados =  daopedido.pedidosDeTamanhoX(tamanho);
 		DAO.commit();
 		return resultados;

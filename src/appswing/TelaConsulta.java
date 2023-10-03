@@ -79,7 +79,6 @@ public class TelaConsulta {
 		frame = new JDialog();
 		frame.setResizable(false);
 		frame.setFont(new Font("Arial", Font.PLAIN, 14));
-		frame.setOpacity(2.0f);
 		frame.setModal(true);
 		frame.setTitle("Consulta");
 		frame.setBounds(100, 100, 729, 385);
@@ -136,17 +135,21 @@ public class TelaConsulta {
 			public void actionPerformed(ActionEvent e) {
 				int index = comboBox.getSelectedIndex();
 				if(index<0)
-					lblResultados.setText("consulta nao selecionada");
+					lblResultados.setText("Consulta nao selecionada");
 				else
 					switch(index) {
 					case 0:
 						try {
-							int nPedidos = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero: "));
+							int nPedidos = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero: "));							
 							List<Cliente> resultado1 = Fachada.clientesComMaisDeNPedidos(nPedidos);
 							listagemCliente(resultado1);
-							break;
-						}catch (Exception e1) {
-							lblResultados.setText(e1.getMessage());
+							break;		
+						} catch (NumberFormatException e1) {
+						    lblResultados.setText("Digite apenas números");
+						    break;
+						} catch (Exception e1) {
+						    lblResultados.setText(e1.getMessage());
+						    break;
 						}
 					case 1: 
 						try {
@@ -155,8 +158,12 @@ public class TelaConsulta {
 							resultado2 = Fachada.consultarQuentinhasPedidasPorCliente(idCliente);
 							listagemQuentinhas(resultado2);
 							break;
+						} catch (NumberFormatException e1) {
+						    lblResultados.setText("Digite apenas números");
+						    break;
 						} catch (Exception e1) {
-							lblResultados.setText(e1.getMessage());
+						    lblResultados.setText(e1.getMessage());
+						    break;
 						}
 					case 2: 
 						try {
@@ -164,17 +171,22 @@ public class TelaConsulta {
 							List<Quentinha> resultado3 = Fachada.quentinhasPedidasMaisDeNVezes(numero);
 							listagemQuentinhas(resultado3);
 							break;
+						} catch (NumberFormatException e1) {
+						    lblResultados.setText("Digite apenas números");
+						    break;
 						} catch (Exception e1) {
-							lblResultados.setText(e1.getMessage());
+						    lblResultados.setText(e1.getMessage());
+						    break;
 						}
 					case 3:
 						try {
-							String data = JOptionPane.showInputDialog("Digite a data: ");
+							String data = JOptionPane.showInputDialog("Digite a data (AAAA-MM-DD):");
 							List<Pedido> resultado4 = Fachada.pedidosNaDataX(data);
 							listagemPedidos(resultado4);
 							break;
 						} catch (Exception e1) {
 							lblResultados.setText(e1.getMessage());
+							break;
 						}
 					case 4: 
 						try {
@@ -184,6 +196,7 @@ public class TelaConsulta {
 							break;
 						} catch (Exception e1) {
 							lblResultados.setText(e1.getMessage());
+							break;
 						}
 					}
 			}
@@ -242,7 +255,7 @@ public class TelaConsulta {
 			//atualizar model no table (visualizacao)
 			table.setModel(model);
 
-			lblResultados.setText("resultados: "+lista.size()+ " objetos");
+			lblResultados.setText("Resultados: "+lista.size()+ " objetos");
 		}
 		catch(Exception erro){
 			label.setText(erro.getMessage());
@@ -255,19 +268,20 @@ public class TelaConsulta {
 			DefaultTableModel model = new DefaultTableModel();
 
 			//adicionar colunas no model
-			model.addColumn("id");
-			model.addColumn("Cliente");
+			model.addColumn("ID");
+			//model.addColumn("Cliente");
+			//pedido.getCliente().getNome(),
 			model.addColumn("Quentinha-Descrição");
 			model.addColumn("Data");
 
 			//adicionar linhas no model
 			for(Pedido pedido : lista) {
-				model.addRow(new Object[] {pedido.getId(), pedido.getCliente().getNome(), pedido.getQuentinha(),pedido.getData() });
+				model.addRow(new Object[] {pedido.getId(), pedido.getQuentinha(),pedido.getData() });
 			}
 			//atualizar model no table (visualizacao)
 			table.setModel(model);
 
-			lblResultados.setText("resultados: "+lista.size()+ " objetos");
+			lblResultados.setText("Resultados: "+lista.size()+ " objetos");
 		}
 		catch(Exception erro){
 			label.setText(erro.getMessage());

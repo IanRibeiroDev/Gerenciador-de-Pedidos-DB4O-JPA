@@ -79,7 +79,6 @@ public class TelaCliente {
 		frame = new JDialog();
 		frame.setFont(new Font("Arial", Font.PLAIN, 12));
 		frame.setModal(true);
-		
 		frame.setResizable(false);
 		frame.setTitle("Cliente");
 		frame.setBounds(100, 100, 729, 385);
@@ -160,6 +159,8 @@ public class TelaCliente {
 					}
 					
 					Fachada.cadastrarCliente(nome, telefone);
+					textField.setText("");
+					textField_1.setText("");
 					label.setText("Ciente cadastrado: "+ nome);
 					listagem();
 				}
@@ -193,6 +194,8 @@ public class TelaCliente {
 						
 						Fachada.excluirCliente(id);
 						label.setText("Cliente excluído");
+						textField.setText("");
+						textField_1.setText("");
 						listagem();
 					}
 					else
@@ -263,6 +266,8 @@ public class TelaCliente {
 							
 							Fachada.alterarNomeCliente(idCliente, nome);
 							Fachada.alterarTelefoneCliente(idCliente, telefone);
+							textField.setText("");
+							textField_1.setText("");
 							label.setText("Cliente alterado");
 							listagem();
 						}
@@ -270,6 +275,7 @@ public class TelaCliente {
 						//Apenas nome será alterado
 						if(nome != "") {
 							Fachada.alterarNomeCliente(idCliente, nome);
+							textField.setText("");
 							label.setText("Cliente alterado");
 							listagem();
 						}
@@ -281,6 +287,7 @@ public class TelaCliente {
 								return;
 							}
 							Fachada.alterarTelefoneCliente(idCliente, telefone);
+							textField_1.setText("");
 							label.setText("Cliente alterado");
 							listagem();
 						}
@@ -311,9 +318,9 @@ public class TelaCliente {
 			DefaultTableModel model = new DefaultTableModel();
 
 			//adicionar colunas no model
-			model.addColumn("cpf");
-			model.addColumn("nome");
-			model.addColumn("telefone");
+			model.addColumn("CPF");
+			model.addColumn("Nome");
+			model.addColumn("Telefone");
 			
 		    // Define a tabela como não editável
 	        table.setDefaultEditor(Object.class, null);

@@ -38,6 +38,7 @@ import javax.swing.table.DefaultTableModel;
 
 import modelo.Pedido;
 import regras_negocio.Fachada;
+import javax.swing.JPanel;
 
 public class TelaPedido {
 	private JDialog frame;
@@ -206,7 +207,7 @@ public class TelaPedido {
 			}
 		});
 		btnApagarPedido.setFont(new Font("Arial", Font.PLAIN, 14));
-		btnApagarPedido.setBounds(255, 213, 206, 36);
+		btnApagarPedido.setBounds(255, 213, 251, 36);
 		frame.getContentPane().add(btnApagarPedido);
 
 
@@ -314,7 +315,7 @@ public class TelaPedido {
 
 			//adicionar linhas no model
 			for(Pedido pedido : lista) {
-				model.addRow(new Object[]{pedido.getId(),pedido.getData(),pedido.getQuentinha(),pedido.getTamanho(),pedido.getCliente()});
+				model.addRow(new Object[]{pedido.getId(),pedido.getData(),pedido.getQuentinha(),pedido.getTamanho(),pedido.getCliente()} );
 			}
 
 			//atualizar model no table (visualizacao)
