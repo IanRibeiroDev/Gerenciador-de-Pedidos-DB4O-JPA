@@ -57,6 +57,11 @@ public class Quentinha {
 		return pedidos.size();
 	}
 	
+	//Retorna o array pedidos
+	public List<Pedido> getListaPedidos() {
+		return pedidos;
+	}
+	
 	public String toString() {
 		return "Quentinha: " + id + ", Descricao: (" + descricao + "), Vezes pedida: " + pedidos.size();
 	}

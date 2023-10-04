@@ -202,7 +202,7 @@ public class TelaCliente {
 		button_2.setBounds(345, 220, 171, 34);
 		frame.getContentPane().add(button_2);
 
-		button_3 = new JButton("Exibir pedidos de cliente selecionado");
+		button_3 = new JButton("Exibir quentinhas dos pedidos do cliente");
 		button_3.setFont(new Font("Arial", Font.PLAIN, 12));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -221,7 +221,7 @@ public class TelaCliente {
 								List<Quentinha> quentinhasPedidas = Fachada.consultarQuentinhasPedidasPorCliente(id);
 								
 								for  (Quentinha quentinha : quentinhasPedidas) {
-						                texto += "ID do Pedido: " + quentinha.getId() + "\n";
+						                texto += "ID da Quentinha: " + quentinha.getId() + "\n";
 						                texto += "Descrição: " + quentinha.getDescricao()+ "\n";
 						                texto += "\n";
 						            }	

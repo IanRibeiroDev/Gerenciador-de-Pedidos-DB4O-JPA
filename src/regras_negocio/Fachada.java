@@ -83,16 +83,13 @@ public class Fachada {
 		if(quen==null) 
 			throw new Exception ("Quentinha inexistente!");
 
+		List<Pedido> pedidosQuentinha = quen.getListaPedidos();
+		int limite = pedidosQuentinha.size();
+		
+		for(int i = 0; i < limite; i++)
+			Fachada.excluirPedido(pedidosQuentinha.get(0).getId());
+		
 		daoquentinha.delete(quen);
-		
-		//Vamos excluir os pedidos com essa quentinha
-		List<Pedido> resultados =  listarPedidos();
-		for (int i = 0; i < resultados.size(); i++) {
-			if(resultados.get(i).getQuentinha() == quen) {
-				daopedido.delete(resultados.get(i));
-			}
-		}
-		
 		DAO.commit();
 	}
 
@@ -116,15 +113,13 @@ public class Fachada {
 		if(cli==null) 
 			throw new Exception ("Cliente inexistente!");
 
-		daocliente.delete(cli);;
+		List<Pedido> pedidosCliente = cli.getListaPedidos();
+		int limite = pedidosCliente.size();
 		
-		//Vamos excluir os pedidos desse cliente
-		List<Pedido> resultados =  listarPedidos();
-		for (int i = 0; i < resultados.size(); i++) {
-			if(resultados.get(i).getCliente()==cli) {
-				daopedido.delete(resultados.get(i));
-			}
-		}
+		for(int i = 0; i < limite; i++)
+			Fachada.excluirPedido(pedidosCliente.get(0).getId());
+		
+		daocliente.delete(cli);
 		DAO.commit();
 	}
 
@@ -167,8 +162,6 @@ public class Fachada {
 		
 		for(Pedido ped : pedidos)
 			if(!quentinhasPedidas.contains(ped.getQuentinha())) {
-				System.out.println("entrou");
-				System.out.println(ped.getQuentinha());
 				quentinhasPedidas.add(ped.getQuentinha());}
 		
 		DAO.commit();
