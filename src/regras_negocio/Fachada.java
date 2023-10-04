@@ -166,8 +166,10 @@ public class Fachada {
 		List<Quentinha> quentinhasPedidas = new ArrayList<>();
 		
 		for(Pedido ped : pedidos)
-			if(!quentinhasPedidas.contains(ped.getQuentinha()))
-				quentinhasPedidas.add(ped.getQuentinha());
+			if(!quentinhasPedidas.contains(ped.getQuentinha())) {
+				System.out.println("entrou");
+				System.out.println(ped.getQuentinha());
+				quentinhasPedidas.add(ped.getQuentinha());}
 		
 		DAO.commit();
 		return quentinhasPedidas;

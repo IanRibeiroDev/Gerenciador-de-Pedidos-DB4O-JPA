@@ -95,7 +95,7 @@ public class TelaCliente {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				lblResultados.setText("Selecionado="+ (String) table.getValueAt( table.getSelectedRow(), 0));
+				lblResultados.setText("Selecionado="+ (int) table.getValueAt( table.getSelectedRow(), 0));
 			}
 		});
 		table.setGridColor(Color.BLACK);
@@ -215,8 +215,8 @@ public class TelaCliente {
 
 						if(cliente !=  null) {
 							String texto= "";
-							if(cliente.getListaPedidos().size()==0)
-								texto = "Não possui pedidos";
+							if(cliente.getListaPedidos().size()==0) {
+								texto = "Não possui pedidos";}
 							else {
 								List<Quentinha> quentinhasPedidas = Fachada.consultarQuentinhasPedidasPorCliente(id);
 								

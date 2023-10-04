@@ -21,7 +21,7 @@ public class Cliente {
 	public void setNome(String novoNome) {
 		this.nome = novoNome;
 	}
-
+	
 	public String getTelefone() {
 		return telefone;
 	}
