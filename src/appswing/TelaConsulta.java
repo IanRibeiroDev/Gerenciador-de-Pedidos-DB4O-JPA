@@ -103,7 +103,7 @@ public class TelaConsulta {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				lblResultados.setText("Selecionado="+ (String) table.getValueAt( table.getSelectedRow(), 0));
+				lblResultados.setText("Selecionado="+ (int) table.getValueAt( table.getSelectedRow(), 0));
 			}
 		});
 		table.setGridColor(Color.BLACK);
