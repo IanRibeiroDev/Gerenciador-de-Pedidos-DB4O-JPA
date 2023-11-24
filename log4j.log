@@ -1,0 +1,19 @@
+14:40:15,351  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+14:40:15,360  INFO Util:38 - sgbd => postgresql
+14:40:15,360  INFO Util:39 - banco => quentinha
+14:40:15,361  INFO Util:40 - ip => localhost
+14:40:15,361  INFO Util:45 - configurando postgresql
+14:40:15,438 DEBUG logging:38 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+14:40:15,549  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+14:40:15,596  INFO Version:44 - HHH000412: Hibernate ORM core version 6.3.1.Final
+14:40:15,629 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+14:40:15,630  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+14:40:15,930  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+14:40:15,934  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+14:40:15,934  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+14:40:15,934  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+14:40:15,935  INFO pooling:170 - HHH10001003: Autocommit mode: false
+14:40:15,937  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+14:40:16,320  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+14:40:16,488  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+14:40:16,490  INFO Util:68 - Util.conectar - problema de configuracao: Association 'modelo.Pedido.tamanho' targets an unknown entity named 'java.lang.String'
