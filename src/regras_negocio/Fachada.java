@@ -3,11 +3,14 @@ package regras_negocio;
 import java.util.ArrayList;
 import java.util.List;
 
-import daodb4o.DAO;
-import daodb4o.DAOCliente;
-import daodb4o.DAOPedido;
-import daodb4o.DAOQuentinha;
-import daodb4o.DAOUsuario;
+//import daodb4o.DAO;
+//import daodb4o.DAOCliente;
+//import daodb4o.DAOPedido;
+//import daodb4o.DAOQuentinha;
+//import daodb4o.DAOUsuario;
+
+import daojpa.*;
+
 import modelo.Cliente;
 import modelo.Pedido;
 import modelo.Quentinha;

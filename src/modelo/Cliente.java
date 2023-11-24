@@ -3,10 +3,20 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+@Entity
 public class Cliente {
+	@Id
 	private int id;
 	private String nome;
 	private String telefone;
+	@OneToMany(mappedBy = "cliente", cascade={CascadeType.PERSIST, CascadeType.MERGE},
+			fetch = FetchType.LAZY)
 	private List<Pedido> pedidos = new ArrayList<>();
 	
 	public Cliente(String nome, String telefone) {
