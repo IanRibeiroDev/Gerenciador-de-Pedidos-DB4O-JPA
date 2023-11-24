@@ -35,10 +35,15 @@ public class DAOQuentinha extends DAO<Quentinha>{
 		return q.getResultList();
 	}
 	
-	public Quentinha buscarPorDescricao (String descricao) {	
-		TypedQuery<Quentinha> q = manager.createQuery("select q from Quentinha q where q.descricao = :x", Quentinha.class);
-		q.setParameter("x", descricao);
-		return q.getSingleResult();
+	public Quentinha buscarPorDescricao (String descricao) {
+		try {
+			TypedQuery<Quentinha> q = manager.createQuery("select q from Quentinha q where q.descricao = :x", Quentinha.class);
+			q.setParameter("x", descricao);
+			return q.getSingleResult();
+			
+		} catch(Exception e) {
+			return null;
+		}
 	}
 	
 }

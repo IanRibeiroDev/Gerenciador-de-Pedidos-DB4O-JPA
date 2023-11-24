@@ -18,6 +18,8 @@ public class Quentinha {
 			fetch = FetchType.LAZY)
 	private List<Pedido> pedidos = new ArrayList<>();
 	
+	public Quentinha() {};
+	
 	public Quentinha(String descricao) {
 		this.descricao = descricao;
 	}

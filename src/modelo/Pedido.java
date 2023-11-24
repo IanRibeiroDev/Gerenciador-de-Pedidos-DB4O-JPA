@@ -13,15 +13,17 @@ public class Pedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE},
+			fetch=FetchType.LAZY)
 	private Cliente cliente;
 	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE},
 			fetch=FetchType.LAZY)
 	private Quentinha quentinha;
-	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE},
-			fetch=FetchType.LAZY)
 	private String tamanho;
 	private String data;
 
+	public Pedido() {};
+	
 	public Pedido(Cliente cliente, Quentinha quentinha, String tamanho, String data) {
 		this.cliente = cliente;
 		this.quentinha = quentinha;

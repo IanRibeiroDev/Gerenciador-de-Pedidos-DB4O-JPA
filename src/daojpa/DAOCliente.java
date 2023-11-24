@@ -47,10 +47,16 @@ public class DAOCliente extends DAO<Cliente> {
 		return q.getResultList();
 	}
 	
-	public Cliente buscarPorTelefone (String telefone) {	
-		TypedQuery<Cliente> q = manager.createQuery("select c from Cliente c where c.telefone = :x", Cliente.class);
-		q.setParameter("x", telefone);
-		return q.getSingleResult();
+	public Cliente buscarPorTelefone (String telefone) {
+		try {
+			TypedQuery<Cliente> q = manager.createQuery("select c from Cliente c where c.telefone = :x", Cliente.class);
+			q.setParameter("x", telefone);
+			return q.getSingleResult();
+			
+		} catch(Exception e) {
+			return null;
+		}
+		
 	}
 		
 }

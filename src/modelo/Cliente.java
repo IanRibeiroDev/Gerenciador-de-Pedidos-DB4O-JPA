@@ -19,6 +19,8 @@ public class Cliente {
 			fetch = FetchType.LAZY)
 	private List<Pedido> pedidos = new ArrayList<>();
 	
+	public Cliente() {};
+	
 	public Cliente(String nome, String telefone) {
 		this.nome = nome;
 		this.telefone = telefone;

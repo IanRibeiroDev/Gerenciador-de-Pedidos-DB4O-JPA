@@ -9,6 +9,8 @@ public class Usuario {
 	private String nome;
 	private String senha;
 	
+	public Usuario() {};
+	
 	public Usuario(String nome, String senha) {
 		super();
 		this.nome = nome;
