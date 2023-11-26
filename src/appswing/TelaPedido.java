@@ -307,7 +307,7 @@ public class TelaPedido {
 
 			//adicionar linhas no model
 			for(Pedido ped : lista) {
-				model.addRow(new Object[]{ped.getId(),ped.getData(),ped.getQuentinha(),ped.getTamanho(),ped.getCliente()} );
+				model.addRow(new Object[]{ped.getId(),ped.getData(),ped.getQuentinha().getId() + " : " + ped.getQuentinha().getDescricao(),ped.getTamanho(),ped.getCliente().getId() + " : " + ped.getCliente().getNome()} );
 			}
 
 			//atualizar model no table (visualizacao)

@@ -15,7 +15,7 @@ public class DAOPedido  extends DAO<Pedido>{
 	public Pedido read (Object chave){
 		try{
 			int id = (int) chave;
-			TypedQuery<Pedido> q = manager.createQuery("select a from Pedido a where a.id = :n ",Pedido.class);
+			TypedQuery<Pedido> q = manager.createQuery("select p from Pedido p JOIN FETCH p.quentinha JOIN FETCH p.cliente where p.id = :n ", Pedido.class);
 			q.setParameter("n", id);
 
 			return q.getSingleResult();
@@ -25,7 +25,7 @@ public class DAOPedido  extends DAO<Pedido>{
 	}
 
 	public List<Pedido> readAll(){
-		TypedQuery<Pedido> q = manager.createQuery("select a from Pedido a LEFT JOIN FETCH a.quentinha  JOIN FETCH a.cliente order by a.id", Pedido.class);
+		TypedQuery<Pedido> q = manager.createQuery("select p from Pedido p JOIN FETCH p.quentinha JOIN FETCH p.cliente order by p.id", Pedido.class);
 		return  q.getResultList();
 	}
 
@@ -35,13 +35,14 @@ public class DAOPedido  extends DAO<Pedido>{
 	//--------------------------------------------
 
 	public List<Pedido> pedidosNaDataX(String data) {
-		TypedQuery<Pedido> q = manager.createQuery("select p from Pedido p where p.data = :x", Pedido.class);
+		data += "%";
+		TypedQuery<Pedido> q = manager.createQuery("select p from Pedido p JOIN FETCH p.quentinha JOIN FETCH p.cliente where p.data like :x", Pedido.class);
 		q.setParameter("x", data);
 		return q.getResultList();
 	}
 	
 	public List<Pedido> pedidosDeTamanhoX(String tamanho) {
-		TypedQuery<Pedido> q = manager.createQuery("select p from Pedido p where p.tamanho = :x", Pedido.class);
+		TypedQuery<Pedido> q = manager.createQuery("select p from Pedido p JOIN FETCH p.quentinha JOIN FETCH p.cliente where p.tamanho = :x", Pedido.class);
 		q.setParameter("x", tamanho);
 		return q.getResultList();
 	}

@@ -15,7 +15,7 @@ public class DAOQuentinha extends DAO<Quentinha>{
 	public Quentinha read (Object chave){
 		try{
 			int id = (int) chave;
-			TypedQuery<Quentinha> q = manager.createQuery("select q from Quentinha q where q.id=:id",Quentinha.class);
+			TypedQuery<Quentinha> q = manager.createQuery("select q from Quentinha q LEFT JOIN FETCH q.pedidos where q.id=:id",Quentinha.class);
 			q.setParameter("id", id);
 			Quentinha c =  q.getSingleResult();
 			return c;
@@ -30,14 +30,14 @@ public class DAOQuentinha extends DAO<Quentinha>{
 	}
 	
 	public List<Quentinha> quentinhasPedidasMaisDeNVezes(int n){
-		TypedQuery<Quentinha> q = manager.createQuery("select q from Quentinha q where size(q.pedidos) > :x", Quentinha.class);
+		TypedQuery<Quentinha> q = manager.createQuery("select q from Quentinha q LEFT JOIN FETCH q.pedidos where size(q.pedidos) > :x", Quentinha.class);
 		q.setParameter("x", n);
 		return q.getResultList();
 	}
 	
 	public Quentinha buscarPorDescricao (String descricao) {
 		try {
-			TypedQuery<Quentinha> q = manager.createQuery("select q from Quentinha q where q.descricao = :x", Quentinha.class);
+			TypedQuery<Quentinha> q = manager.createQuery("select q from Quentinha q LEFT JOIN FETCH q.pedidos where q.descricao = :x", Quentinha.class);
 			q.setParameter("x", descricao);
 			return q.getSingleResult();
 			

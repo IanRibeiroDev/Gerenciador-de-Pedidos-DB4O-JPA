@@ -1,33 +1,529 @@
-20:27:03,568  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
-20:27:03,571  INFO Util:38 - sgbd => postgresql
-20:27:03,571  INFO Util:39 - banco => quentinha
-20:27:03,572  INFO Util:40 - ip => localhost
-20:27:03,572  INFO Util:45 - configurando postgresql
-20:27:03,594 DEBUG logging:38 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
-20:27:03,692  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
-20:27:03,736  INFO Version:44 - HHH000412: Hibernate ORM core version 6.3.1.Final
-20:27:03,767 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
-20:27:03,768  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
-20:27:04,007  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
-20:27:04,011  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
-20:27:04,011  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
-20:27:04,011  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
-20:27:04,011  INFO pooling:170 - HHH10001003: Autocommit mode: false
-20:27:04,014  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
-20:27:04,238  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-20:27:05,159  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-20:27:05,172  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3dce6dd8] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-20:27:05,634 DEBUG SQL:135 - select q1_0.id,q1_0.descricao from Quentinha q1_0 where q1_0.descricao=?
-20:27:05,635 TRACE bind:24 - binding parameter (1:VARCHAR) <- [Feijao Preto, Arroz Branco, Salada Crua, Frango]
-20:27:05,667 DEBUG SQL:135 - insert into Quentinha (descricao,id) values (?,?)
-20:27:05,669 TRACE bind:24 - binding parameter (1:VARCHAR) <- [Feijao Preto, Arroz Branco, Salada Crua, Frango]
-20:27:05,669 TRACE bind:24 - binding parameter (2:INTEGER) <- [0]
-20:27:05,680 DEBUG SQL:135 - select q1_0.id,q1_0.descricao from Quentinha q1_0 where q1_0.descricao=?
-20:27:05,680 TRACE bind:24 - binding parameter (1:VARCHAR) <- [Feijao Carioca, Arroz Integral, Salada de Tomate, Carne de Porco]
-20:27:05,681 DEBUG SQL:135 - insert into Quentinha (descricao,id) values (?,?)
-20:27:05,681 TRACE bind:24 - binding parameter (1:VARCHAR) <- [Feijao Carioca, Arroz Integral, Salada de Tomate, Carne de Porco]
-20:27:05,681 TRACE bind:24 - binding parameter (2:INTEGER) <- [0]
-20:27:05,697  WARN SqlExceptionHelper:145 - SQL Error: 0, SQLState: 23505
-20:27:05,697 ERROR SqlExceptionHelper:150 - ERROR: duplicate key value violates unique constraint "quentinha_pkey"
-  Detail: Key (id)=(0) already exists.
-20:27:05,701  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+09:56:59,132  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+09:56:59,136  INFO Util:38 - sgbd => postgresql
+09:56:59,136  INFO Util:39 - banco => quentinha
+09:56:59,136  INFO Util:40 - ip => localhost
+09:56:59,136  INFO Util:45 - configurando postgresql
+09:56:59,158 DEBUG logging:38 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+09:56:59,239  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+09:56:59,284  INFO Version:44 - HHH000412: Hibernate ORM core version 6.3.1.Final
+09:56:59,314 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+09:56:59,315  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+09:56:59,530  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+09:56:59,533  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+09:56:59,534  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+09:56:59,534  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+09:56:59,534  INFO pooling:170 - HHH10001003: Autocommit mode: false
+09:56:59,536  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+09:56:59,742  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:57:00,540  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:57:00,552  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3c1c29b0] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+09:57:00,897 DEBUG SQL:135 - select u1_0.nome,u1_0.senha from Usuario u1_0 where u1_0.nome=?
+09:57:00,897 TRACE bind:24 - binding parameter (1:VARCHAR) <- [adm]
+09:57:00,904 DEBUG SQL:135 - select u1_0.nome,u1_0.senha from Usuario u1_0 where u1_0.nome=?
+09:57:00,904 TRACE bind:24 - binding parameter (1:VARCHAR) <- [adm]
+09:57:00,923 DEBUG SQL:135 - insert into Usuario (senha,nome) values (?,?)
+09:57:00,924 TRACE bind:24 - binding parameter (1:VARCHAR) <- [1234]
+09:57:00,924 TRACE bind:24 - binding parameter (2:VARCHAR) <- [adm]
+09:57:05,077 DEBUG SQL:135 - select u1_0.nome,u1_0.senha from Usuario u1_0 where u1_0.nome=?
+09:57:05,078 TRACE bind:24 - binding parameter (1:VARCHAR) <- [Amanda]
+09:57:05,198  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+09:57:11,269  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+09:57:11,269  INFO Util:38 - sgbd => postgresql
+09:57:11,270  INFO Util:39 - banco => quentinha
+09:57:11,270  INFO Util:40 - ip => localhost
+09:57:11,270  INFO Util:45 - configurando postgresql
+09:57:11,273  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+09:57:11,274 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+09:57:11,275  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+09:57:11,302  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+09:57:11,302  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+09:57:11,302  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+09:57:11,302  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+09:57:11,303  INFO pooling:170 - HHH10001003: Autocommit mode: false
+09:57:11,303  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+09:57:11,354  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:57:11,414  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:57:11,415  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@1228c678] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+09:57:11,478 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id order by p1_0.id
+09:57:22,151  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+09:57:23,237  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+09:57:23,237  INFO Util:38 - sgbd => postgresql
+09:57:23,238  INFO Util:39 - banco => quentinha
+09:57:23,238  INFO Util:40 - ip => localhost
+09:57:23,238  INFO Util:45 - configurando postgresql
+09:57:23,243  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+09:57:23,246 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+09:57:23,246  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+09:57:23,283  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+09:57:23,283  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+09:57:23,283  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+09:57:23,284  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+09:57:23,284  INFO pooling:170 - HHH10001003: Autocommit mode: false
+09:57:23,284  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+09:57:23,344  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:57:23,410  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:57:23,410  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3864fdae] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+09:57:23,475 DEBUG SQL:135 - select c1_0.id,c1_0.nome,p1_0.cliente_id,p1_0.id,p1_0.data,p1_0.quentinha_id,p1_0.tamanho,c1_0.telefone from Cliente c1_0 left join Pedido p1_0 on c1_0.id=p1_0.cliente_id order by c1_0.id
+09:57:26,258 DEBUG SQL:135 - select c1_0.id,c1_0.nome,p1_0.cliente_id,p1_0.id,p1_0.data,p1_0.quentinha_id,p1_0.tamanho,c1_0.telefone from Cliente c1_0 left join Pedido p1_0 on c1_0.id=p1_0.cliente_id where c1_0.id=?
+09:57:26,258 TRACE bind:24 - binding parameter (1:INTEGER) <- [3]
+09:57:26,262 DEBUG SQL:135 - select c1_0.id,c1_0.nome,p1_0.cliente_id,p1_0.id,p1_0.data,p1_0.quentinha_id,p1_0.tamanho,c1_0.telefone from Cliente c1_0 left join Pedido p1_0 on c1_0.id=p1_0.cliente_id where c1_0.id=?
+09:57:26,263 TRACE bind:24 - binding parameter (1:INTEGER) <- [3]
+09:57:26,267 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id where q1_0.id=?
+09:57:26,268 TRACE bind:24 - binding parameter (1:INTEGER) <- [6]
+09:57:28,708  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+09:57:30,246  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+09:57:30,247  INFO Util:38 - sgbd => postgresql
+09:57:30,247  INFO Util:39 - banco => quentinha
+09:57:30,247  INFO Util:40 - ip => localhost
+09:57:30,247  INFO Util:45 - configurando postgresql
+09:57:30,251  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+09:57:30,252 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+09:57:30,252  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+09:57:30,275  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+09:57:30,275  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+09:57:30,275  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+09:57:30,275  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+09:57:30,275  INFO pooling:170 - HHH10001003: Autocommit mode: false
+09:57:30,276  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+09:57:30,314  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:57:30,357  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:57:30,357  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@60d0c0a3] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+09:57:30,399 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id order by q1_0.id
+09:57:32,872  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+09:57:34,550  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+09:57:34,551  INFO Util:38 - sgbd => postgresql
+09:57:34,551  INFO Util:39 - banco => quentinha
+09:57:34,551  INFO Util:40 - ip => localhost
+09:57:34,551  INFO Util:45 - configurando postgresql
+09:57:34,554  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+09:57:34,556 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+09:57:34,556  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+09:57:34,576  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+09:57:34,576  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+09:57:34,576  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+09:57:34,577  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+09:57:34,577  INFO pooling:170 - HHH10001003: Autocommit mode: false
+09:57:34,577  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+09:57:34,614  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:57:34,654  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:57:34,654  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@654277c1] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+09:57:34,695 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id order by p1_0.id
+09:57:38,569 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id where p1_0.id=?
+09:57:38,569 TRACE bind:24 - binding parameter (1:INTEGER) <- [7]
+09:57:38,574 DEBUG SQL:135 - delete from Pedido where id=?
+09:57:38,575 TRACE bind:24 - binding parameter (1:INTEGER) <- [7]
+09:57:38,579 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id order by p1_0.id
+09:57:40,051  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+09:57:41,010  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+09:57:41,010  INFO Util:38 - sgbd => postgresql
+09:57:41,010  INFO Util:39 - banco => quentinha
+09:57:41,011  INFO Util:40 - ip => localhost
+09:57:41,011  INFO Util:45 - configurando postgresql
+09:57:41,014  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+09:57:41,015 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+09:57:41,015  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+09:57:41,037  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+09:57:41,037  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+09:57:41,037  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+09:57:41,038  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+09:57:41,038  INFO pooling:170 - HHH10001003: Autocommit mode: false
+09:57:41,038  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+09:57:41,076  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:57:41,111  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:57:41,111  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@2bf72bc5] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+09:57:41,152 DEBUG SQL:135 - select c1_0.id,c1_0.nome,p1_0.cliente_id,p1_0.id,p1_0.data,p1_0.quentinha_id,p1_0.tamanho,c1_0.telefone from Cliente c1_0 left join Pedido p1_0 on c1_0.id=p1_0.cliente_id order by c1_0.id
+09:57:42,666 DEBUG SQL:135 - select c1_0.id,c1_0.nome,p1_0.cliente_id,p1_0.id,p1_0.data,p1_0.quentinha_id,p1_0.tamanho,c1_0.telefone from Cliente c1_0 left join Pedido p1_0 on c1_0.id=p1_0.cliente_id where c1_0.id=?
+09:57:42,666 TRACE bind:24 - binding parameter (1:INTEGER) <- [3]
+09:57:44,788  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+09:57:46,473  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+09:57:46,474  INFO Util:38 - sgbd => postgresql
+09:57:46,474  INFO Util:39 - banco => quentinha
+09:57:46,474  INFO Util:40 - ip => localhost
+09:57:46,474  INFO Util:45 - configurando postgresql
+09:57:46,477  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+09:57:46,478 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+09:57:46,478  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+09:57:46,499  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+09:57:46,499  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+09:57:46,499  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+09:57:46,500  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+09:57:46,500  INFO pooling:170 - HHH10001003: Autocommit mode: false
+09:57:46,500  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+09:57:46,536  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:57:46,571  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:57:46,571  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@29c32500] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+09:57:46,609 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id order by q1_0.id
+09:58:08,804  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+09:58:09,981  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+09:58:09,981  INFO Util:38 - sgbd => postgresql
+09:58:09,981  INFO Util:39 - banco => quentinha
+09:58:09,981  INFO Util:40 - ip => localhost
+09:58:09,982  INFO Util:45 - configurando postgresql
+09:58:09,985  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+09:58:09,986 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+09:58:09,987  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+09:58:10,007  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+09:58:10,007  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+09:58:10,007  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+09:58:10,008  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+09:58:10,008  INFO pooling:170 - HHH10001003: Autocommit mode: false
+09:58:10,008  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+09:58:10,047  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:58:10,082  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:58:10,082  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@58eca18e] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+09:58:10,122 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id order by p1_0.id
+09:58:16,514  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+09:58:17,963  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+09:58:17,964  INFO Util:38 - sgbd => postgresql
+09:58:17,964  INFO Util:39 - banco => quentinha
+09:58:17,964  INFO Util:40 - ip => localhost
+09:58:17,964  INFO Util:45 - configurando postgresql
+09:58:17,967  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+09:58:17,969 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+09:58:17,969  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+09:58:17,988  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+09:58:17,989  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+09:58:17,989  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+09:58:17,989  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+09:58:17,989  INFO pooling:170 - HHH10001003: Autocommit mode: false
+09:58:17,989  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+09:58:18,028  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:58:18,061  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:58:18,061  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@6492993f] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+09:58:18,104 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id order by p1_0.id
+09:58:43,920  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+09:58:44,952  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+09:58:44,953  INFO Util:38 - sgbd => postgresql
+09:58:44,953  INFO Util:39 - banco => quentinha
+09:58:44,953  INFO Util:40 - ip => localhost
+09:58:44,953  INFO Util:45 - configurando postgresql
+09:58:44,956  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+09:58:44,957 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+09:58:44,957  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+09:58:44,977  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+09:58:44,977  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+09:58:44,977  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+09:58:44,977  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+09:58:44,977  INFO pooling:170 - HHH10001003: Autocommit mode: false
+09:58:44,978  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+09:58:45,015  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:58:45,044  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:58:45,045  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@597d3bf2] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+09:58:45,089 DEBUG SQL:135 - select c1_0.id,c1_0.nome,p1_0.cliente_id,p1_0.id,p1_0.data,p1_0.quentinha_id,p1_0.tamanho,c1_0.telefone from Cliente c1_0 left join Pedido p1_0 on c1_0.id=p1_0.cliente_id order by c1_0.id
+09:58:47,362 DEBUG SQL:135 - select c1_0.id,c1_0.nome,p1_0.cliente_id,p1_0.id,p1_0.data,p1_0.quentinha_id,p1_0.tamanho,c1_0.telefone from Cliente c1_0 left join Pedido p1_0 on c1_0.id=p1_0.cliente_id where c1_0.id=?
+09:58:47,362 TRACE bind:24 - binding parameter (1:INTEGER) <- [13]
+09:58:47,363 DEBUG SQL:135 - select c1_0.id,c1_0.nome,p1_0.cliente_id,p1_0.id,p1_0.data,p1_0.quentinha_id,p1_0.tamanho,c1_0.telefone from Cliente c1_0 left join Pedido p1_0 on c1_0.id=p1_0.cliente_id where c1_0.id=?
+09:58:47,364 TRACE bind:24 - binding parameter (1:INTEGER) <- [13]
+09:58:47,365 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id where q1_0.id=?
+09:58:47,365 TRACE bind:24 - binding parameter (1:INTEGER) <- [7]
+09:58:49,639  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+09:58:50,772  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+09:58:50,773  INFO Util:38 - sgbd => postgresql
+09:58:50,773  INFO Util:39 - banco => quentinha
+09:58:50,773  INFO Util:40 - ip => localhost
+09:58:50,773  INFO Util:45 - configurando postgresql
+09:58:50,776  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+09:58:50,777 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+09:58:50,777  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+09:58:50,795  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+09:58:50,795  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+09:58:50,795  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+09:58:50,796  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+09:58:50,796  INFO pooling:170 - HHH10001003: Autocommit mode: false
+09:58:50,796  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+09:58:50,832  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:58:50,861  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:58:50,861  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@479fed0a] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+09:58:50,903 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id order by q1_0.id
+09:58:52,787 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id where q1_0.id=?
+09:58:52,788 TRACE bind:24 - binding parameter (1:INTEGER) <- [7]
+09:58:52,790 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id where p1_0.id=?
+09:58:52,790 TRACE bind:24 - binding parameter (1:INTEGER) <- [11]
+09:58:52,793 DEBUG SQL:135 - delete from Pedido where id=?
+09:58:52,793 TRACE bind:24 - binding parameter (1:INTEGER) <- [11]
+09:58:52,793 DEBUG SQL:135 - delete from Quentinha where id=?
+09:58:52,794 TRACE bind:24 - binding parameter (1:INTEGER) <- [7]
+09:58:52,795 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id order by q1_0.id
+09:58:54,341  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+09:58:55,382  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+09:58:55,383  INFO Util:38 - sgbd => postgresql
+09:58:55,383  INFO Util:39 - banco => quentinha
+09:58:55,383  INFO Util:40 - ip => localhost
+09:58:55,383  INFO Util:45 - configurando postgresql
+09:58:55,386  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+09:58:55,387 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+09:58:55,387  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+09:58:55,405  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+09:58:55,405  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+09:58:55,405  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+09:58:55,405  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+09:58:55,405  INFO pooling:170 - HHH10001003: Autocommit mode: false
+09:58:55,406  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+09:58:55,550  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:58:55,579  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:58:55,579  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@a327c64] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+09:58:55,622 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id order by p1_0.id
+09:58:59,598  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+09:59:00,498  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+09:59:00,498  INFO Util:38 - sgbd => postgresql
+09:59:00,498  INFO Util:39 - banco => quentinha
+09:59:00,498  INFO Util:40 - ip => localhost
+09:59:00,499  INFO Util:45 - configurando postgresql
+09:59:00,502  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+09:59:00,503 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+09:59:00,504  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+09:59:00,521  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+09:59:00,521  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+09:59:00,521  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+09:59:00,521  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+09:59:00,522  INFO pooling:170 - HHH10001003: Autocommit mode: false
+09:59:00,522  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+09:59:00,559  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:59:00,589  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:59:00,589  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@70595baa] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+09:59:00,628 DEBUG SQL:135 - select c1_0.id,c1_0.nome,p1_0.cliente_id,p1_0.id,p1_0.data,p1_0.quentinha_id,p1_0.tamanho,c1_0.telefone from Cliente c1_0 left join Pedido p1_0 on c1_0.id=p1_0.cliente_id order by c1_0.id
+09:59:03,915 DEBUG SQL:135 - select c1_0.id,c1_0.nome,p1_0.cliente_id,p1_0.id,p1_0.data,p1_0.quentinha_id,p1_0.tamanho,c1_0.telefone from Cliente c1_0 left join Pedido p1_0 on c1_0.id=p1_0.cliente_id where c1_0.id=?
+09:59:03,915 TRACE bind:24 - binding parameter (1:INTEGER) <- [13]
+09:59:05,653  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+09:59:07,044  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+09:59:07,044  INFO Util:38 - sgbd => postgresql
+09:59:07,044  INFO Util:39 - banco => quentinha
+09:59:07,044  INFO Util:40 - ip => localhost
+09:59:07,044  INFO Util:45 - configurando postgresql
+09:59:07,047  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+09:59:07,048 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+09:59:07,048  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+09:59:07,064  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+09:59:07,065  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+09:59:07,065  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+09:59:07,065  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+09:59:07,065  INFO pooling:170 - HHH10001003: Autocommit mode: false
+09:59:07,065  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+09:59:07,102  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:59:07,129  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:59:07,129  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@69dc806a] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+09:59:07,169 DEBUG SQL:135 - select c1_0.id,c1_0.nome,p1_0.cliente_id,p1_0.id,p1_0.data,p1_0.quentinha_id,p1_0.tamanho,c1_0.telefone from Cliente c1_0 left join Pedido p1_0 on c1_0.id=p1_0.cliente_id order by c1_0.id
+09:59:11,113 DEBUG SQL:135 - select c1_0.id,c1_0.nome,p1_0.cliente_id,p1_0.id,p1_0.data,p1_0.quentinha_id,p1_0.tamanho,c1_0.telefone from Cliente c1_0 left join Pedido p1_0 on c1_0.id=p1_0.cliente_id where c1_0.id=?
+09:59:11,113 TRACE bind:24 - binding parameter (1:INTEGER) <- [2]
+09:59:11,115 DEBUG SQL:135 - select c1_0.id,c1_0.nome,p1_0.cliente_id,p1_0.id,p1_0.data,p1_0.quentinha_id,p1_0.tamanho,c1_0.telefone from Cliente c1_0 left join Pedido p1_0 on c1_0.id=p1_0.cliente_id where c1_0.id=?
+09:59:11,115 TRACE bind:24 - binding parameter (1:INTEGER) <- [2]
+09:59:11,117 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id where q1_0.id=?
+09:59:11,118 TRACE bind:24 - binding parameter (1:INTEGER) <- [13]
+09:59:13,635  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+09:59:15,280  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+09:59:15,280  INFO Util:38 - sgbd => postgresql
+09:59:15,280  INFO Util:39 - banco => quentinha
+09:59:15,280  INFO Util:40 - ip => localhost
+09:59:15,280  INFO Util:45 - configurando postgresql
+09:59:15,283  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+09:59:15,284 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+09:59:15,284  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+09:59:15,302  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+09:59:15,302  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+09:59:15,302  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+09:59:15,302  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+09:59:15,302  INFO pooling:170 - HHH10001003: Autocommit mode: false
+09:59:15,302  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+09:59:15,340  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:59:15,367  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:59:15,368  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@5a87c1d0] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+09:59:15,410 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id order by p1_0.id
+09:59:26,561  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+09:59:27,547  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+09:59:27,547  INFO Util:38 - sgbd => postgresql
+09:59:27,547  INFO Util:39 - banco => quentinha
+09:59:27,547  INFO Util:40 - ip => localhost
+09:59:27,547  INFO Util:45 - configurando postgresql
+09:59:27,550  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+09:59:27,551 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+09:59:27,551  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+09:59:27,568  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+09:59:27,569  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+09:59:27,569  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+09:59:27,569  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+09:59:27,569  INFO pooling:170 - HHH10001003: Autocommit mode: false
+09:59:27,569  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+09:59:27,606  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:59:27,631  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:59:27,632  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@333b3cb7] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+09:59:27,673 DEBUG SQL:135 - select c1_0.id,c1_0.nome,p1_0.cliente_id,p1_0.id,p1_0.data,p1_0.quentinha_id,p1_0.tamanho,c1_0.telefone from Cliente c1_0 left join Pedido p1_0 on c1_0.id=p1_0.cliente_id order by c1_0.id
+09:59:30,520 DEBUG SQL:135 - select c1_0.id,c1_0.nome,p1_0.cliente_id,p1_0.id,p1_0.data,p1_0.quentinha_id,p1_0.tamanho,c1_0.telefone from Cliente c1_0 left join Pedido p1_0 on c1_0.id=p1_0.cliente_id where c1_0.id=?
+09:59:30,520 TRACE bind:24 - binding parameter (1:INTEGER) <- [2]
+09:59:30,522 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id where p1_0.id=?
+09:59:30,522 TRACE bind:24 - binding parameter (1:INTEGER) <- [16]
+09:59:30,523 DEBUG SQL:135 - delete from Pedido where id=?
+09:59:30,523 TRACE bind:24 - binding parameter (1:INTEGER) <- [16]
+09:59:30,524 DEBUG SQL:135 - delete from Cliente where id=?
+09:59:30,524 TRACE bind:24 - binding parameter (1:INTEGER) <- [2]
+09:59:30,525 DEBUG SQL:135 - select c1_0.id,c1_0.nome,p1_0.cliente_id,p1_0.id,p1_0.data,p1_0.quentinha_id,p1_0.tamanho,c1_0.telefone from Cliente c1_0 left join Pedido p1_0 on c1_0.id=p1_0.cliente_id order by c1_0.id
+09:59:31,651  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+09:59:33,132  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+09:59:33,132  INFO Util:38 - sgbd => postgresql
+09:59:33,132  INFO Util:39 - banco => quentinha
+09:59:33,133  INFO Util:40 - ip => localhost
+09:59:33,133  INFO Util:45 - configurando postgresql
+09:59:33,135  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+09:59:33,136 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+09:59:33,136  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+09:59:33,153  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+09:59:33,153  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+09:59:33,153  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+09:59:33,154  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+09:59:33,154  INFO pooling:170 - HHH10001003: Autocommit mode: false
+09:59:33,154  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+09:59:33,192  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:59:33,218  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:59:33,218  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@5cb60d01] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+09:59:33,258 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id order by p1_0.id
+09:59:36,906  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+09:59:37,717  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+09:59:37,717  INFO Util:38 - sgbd => postgresql
+09:59:37,717  INFO Util:39 - banco => quentinha
+09:59:37,717  INFO Util:40 - ip => localhost
+09:59:37,718  INFO Util:45 - configurando postgresql
+09:59:37,720  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+09:59:37,721 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+09:59:37,721  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+09:59:37,739  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+09:59:37,739  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+09:59:37,739  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+09:59:37,739  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+09:59:37,739  INFO pooling:170 - HHH10001003: Autocommit mode: false
+09:59:37,739  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+09:59:37,777  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:59:37,799  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:59:37,799  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@5295d761] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+09:59:37,839 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id order by q1_0.id
+09:59:44,845  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+09:59:45,737  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+09:59:45,737  INFO Util:38 - sgbd => postgresql
+09:59:45,737  INFO Util:39 - banco => quentinha
+09:59:45,737  INFO Util:40 - ip => localhost
+09:59:45,737  INFO Util:45 - configurando postgresql
+09:59:45,739  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+09:59:45,740 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+09:59:45,741  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+09:59:45,758  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+09:59:45,759  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+09:59:45,759  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+09:59:45,759  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+09:59:45,759  INFO pooling:170 - HHH10001003: Autocommit mode: false
+09:59:45,759  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+09:59:45,798  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:59:45,821  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:59:45,822  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@308d7f1d] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+09:59:45,861 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id order by p1_0.id
+10:00:03,233 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id where q1_0.id=?
+10:00:03,233 TRACE bind:24 - binding parameter (1:INTEGER) <- [2]
+10:00:03,236 DEBUG SQL:135 - select c1_0.id,c1_0.nome,p1_0.cliente_id,p1_0.id,p1_0.data,p1_0.quentinha_id,p1_0.tamanho,c1_0.telefone from Cliente c1_0 left join Pedido p1_0 on c1_0.id=p1_0.cliente_id where c1_0.id=?
+10:00:03,236 TRACE bind:24 - binding parameter (1:INTEGER) <- [1]
+10:00:03,238 DEBUG SQL:135 - insert into Pedido (cliente_id,data,quentinha_id,tamanho) values (?,?,?,?)
+10:00:03,239 TRACE bind:24 - binding parameter (1:INTEGER) <- [1]
+10:00:03,239 TRACE bind:24 - binding parameter (2:VARCHAR) <- [26/11/2023 10:00:03]
+10:00:03,239 TRACE bind:24 - binding parameter (3:INTEGER) <- [2]
+10:00:03,239 TRACE bind:24 - binding parameter (4:VARCHAR) <- [P]
+10:00:03,247 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id order by p1_0.id
+10:00:14,478 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id where p1_0.id=?
+10:00:14,479 TRACE bind:24 - binding parameter (1:INTEGER) <- [31]
+10:00:14,480 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id where q1_0.id=?
+10:00:14,480 TRACE bind:24 - binding parameter (1:INTEGER) <- [4]
+10:00:14,483 DEBUG SQL:135 - select p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Pedido p1_0 where p1_0.quentinha_id=?
+10:00:14,484 TRACE bind:24 - binding parameter (1:INTEGER) <- [2]
+10:00:14,488 DEBUG SQL:135 - update Pedido set cliente_id=?,data=?,quentinha_id=?,tamanho=? where id=?
+10:00:14,489 TRACE bind:24 - binding parameter (1:INTEGER) <- [1]
+10:00:14,489 TRACE bind:24 - binding parameter (2:VARCHAR) <- [26/11/2023 10:00:03]
+10:00:14,489 TRACE bind:24 - binding parameter (3:INTEGER) <- [4]
+10:00:14,489 TRACE bind:24 - binding parameter (4:VARCHAR) <- [P]
+10:00:14,490 TRACE bind:24 - binding parameter (5:INTEGER) <- [31]
+10:00:14,493 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id where p1_0.id=?
+10:00:14,493 TRACE bind:24 - binding parameter (1:INTEGER) <- [31]
+10:00:14,495 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id order by p1_0.id
+10:00:14,498 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id where p1_0.id=?
+10:00:14,498 TRACE bind:24 - binding parameter (1:INTEGER) <- [31]
+10:00:14,499 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id where q1_0.id=?
+10:00:14,499 TRACE bind:24 - binding parameter (1:INTEGER) <- [4]
+10:00:14,501 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id order by p1_0.id
+10:00:14,504 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id where p1_0.id=?
+10:00:14,505 TRACE bind:24 - binding parameter (1:INTEGER) <- [31]
+10:00:14,506 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id order by p1_0.id
+10:00:20,204 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id where p1_0.id=?
+10:00:20,205 TRACE bind:24 - binding parameter (1:INTEGER) <- [31]
+10:00:20,206 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id where q1_0.id=?
+10:00:20,206 TRACE bind:24 - binding parameter (1:INTEGER) <- [4]
+10:00:20,207 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id where p1_0.id=?
+10:00:20,207 TRACE bind:24 - binding parameter (1:INTEGER) <- [31]
+10:00:20,208 DEBUG SQL:135 - update Pedido set cliente_id=?,data=?,quentinha_id=?,tamanho=? where id=?
+10:00:20,208 TRACE bind:24 - binding parameter (1:INTEGER) <- [1]
+10:00:20,208 TRACE bind:24 - binding parameter (2:VARCHAR) <- [26/11/2023 10:00:03]
+10:00:20,208 TRACE bind:24 - binding parameter (3:INTEGER) <- [4]
+10:00:20,208 TRACE bind:24 - binding parameter (4:VARCHAR) <- [M]
+10:00:20,208 TRACE bind:24 - binding parameter (5:INTEGER) <- [31]
+10:00:20,209 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id order by p1_0.id
+10:00:20,211 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id where p1_0.id=?
+10:00:20,211 TRACE bind:24 - binding parameter (1:INTEGER) <- [31]
+10:00:20,212 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id where q1_0.id=?
+10:00:20,213 TRACE bind:24 - binding parameter (1:INTEGER) <- [4]
+10:00:20,214 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id order by p1_0.id
+10:00:20,215 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id where p1_0.id=?
+10:00:20,216 TRACE bind:24 - binding parameter (1:INTEGER) <- [31]
+10:00:20,216 DEBUG SQL:135 - select p1_0.id,c1_0.id,c1_0.nome,c1_0.telefone,p1_0.data,q1_0.id,q1_0.descricao,p1_0.tamanho from Pedido p1_0 join Quentinha q1_0 on q1_0.id=p1_0.quentinha_id join Cliente c1_0 on c1_0.id=p1_0.cliente_id order by p1_0.id
+10:00:24,782  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+10:00:25,599  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+10:00:25,599  INFO Util:38 - sgbd => postgresql
+10:00:25,600  INFO Util:39 - banco => quentinha
+10:00:25,600  INFO Util:40 - ip => localhost
+10:00:25,600  INFO Util:45 - configurando postgresql
+10:00:25,602  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+10:00:25,603 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+10:00:25,603  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+10:00:25,621  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+10:00:25,621  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+10:00:25,621  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+10:00:25,622  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+10:00:25,622  INFO pooling:170 - HHH10001003: Autocommit mode: false
+10:00:25,622  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+10:00:25,660  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+10:00:25,683  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+10:00:25,683  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4f132280] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+10:00:25,722 DEBUG SQL:135 - select c1_0.id,c1_0.nome,p1_0.cliente_id,p1_0.id,p1_0.data,p1_0.quentinha_id,p1_0.tamanho,c1_0.telefone from Cliente c1_0 left join Pedido p1_0 on c1_0.id=p1_0.cliente_id order by c1_0.id
+10:00:27,443  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]
+10:00:28,163  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+10:00:28,164  INFO Util:38 - sgbd => postgresql
+10:00:28,164  INFO Util:39 - banco => quentinha
+10:00:28,164  INFO Util:40 - ip => localhost
+10:00:28,164  INFO Util:45 - configurando postgresql
+10:00:28,166  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+10:00:28,167 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+10:00:28,167  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+10:00:28,184  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+10:00:28,184  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+10:00:28,184  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/quentinha]
+10:00:28,185  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+10:00:28,185  INFO pooling:170 - HHH10001003: Autocommit mode: false
+10:00:28,185  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+10:00:28,222  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+10:00:28,244  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+10:00:28,244  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@27749d9c] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+10:00:28,284 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id order by q1_0.id
+10:00:33,864 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id where q1_0.id=?
+10:00:33,865 TRACE bind:24 - binding parameter (1:INTEGER) <- [3]
+10:00:33,867 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id where q1_0.descricao=?
+10:00:33,867 TRACE bind:24 - binding parameter (1:VARCHAR) <- [asdasd]
+10:00:33,868 DEBUG SQL:135 - update Quentinha set descricao=? where id=?
+10:00:33,869 TRACE bind:24 - binding parameter (1:VARCHAR) <- [asdasd]
+10:00:33,869 TRACE bind:24 - binding parameter (2:INTEGER) <- [3]
+10:00:33,871 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id order by q1_0.id
+10:00:40,022 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id where q1_0.id=?
+10:00:40,022 TRACE bind:24 - binding parameter (1:INTEGER) <- [4]
+10:00:40,023 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id where q1_0.descricao=?
+10:00:40,023 TRACE bind:24 - binding parameter (1:VARCHAR) <- [asdasdasdasd]
+10:00:40,024 DEBUG SQL:135 - update Quentinha set descricao=? where id=?
+10:00:40,024 TRACE bind:24 - binding parameter (1:VARCHAR) <- [asdasdasdasd]
+10:00:40,024 TRACE bind:24 - binding parameter (2:INTEGER) <- [4]
+10:00:40,025 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id order by q1_0.id
+10:00:42,985 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id where q1_0.descricao=?
+10:00:42,986 TRACE bind:24 - binding parameter (1:VARCHAR) <- [df]
+10:00:42,987 DEBUG SQL:135 - insert into Quentinha (descricao) values (?)
+10:00:42,987 TRACE bind:24 - binding parameter (1:VARCHAR) <- [df]
+10:00:42,990 DEBUG SQL:135 - select q1_0.id,q1_0.descricao,p1_0.quentinha_id,p1_0.id,p1_0.cliente_id,p1_0.data,p1_0.tamanho from Quentinha q1_0 left join Pedido p1_0 on q1_0.id=p1_0.quentinha_id order by q1_0.id
+10:00:45,683  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/quentinha]

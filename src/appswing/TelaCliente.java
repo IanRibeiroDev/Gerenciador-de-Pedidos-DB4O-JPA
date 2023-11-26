@@ -312,7 +312,7 @@ public class TelaCliente {
 			DefaultTableModel model = new DefaultTableModel();
 
 			//adicionar colunas no model
-			model.addColumn("CPF");
+			model.addColumn("ID");
 			model.addColumn("Nome");
 			model.addColumn("Telefone");
 			

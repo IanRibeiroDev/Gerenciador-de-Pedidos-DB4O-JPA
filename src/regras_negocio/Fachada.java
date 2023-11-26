@@ -57,8 +57,8 @@ public class Fachada {
 
 		Pedido ped = new Pedido(cli, quen, tamanho, data);
 		daopedido.create(ped);
-		daoquentinha.update(quen);
-		daocliente.update(cli);
+//		daoquentinha.update(quen); //JPA Atualiza automaticamente
+//		daocliente.update(cli); //JPA Atualiza automaticamente
 		DAO.commit();
 		return ped;
 	}
@@ -69,13 +69,13 @@ public class Fachada {
 		if(ped==null) 
 			throw new Exception ("Pedido inexistente!");
 
-		Cliente cli = ped.getCliente();
-		Quentinha quen = ped.getQuentinha();
-		cli.delPedido(ped);
-		quen.delPedido(ped);
+//		Cliente cli = ped.getCliente();
+//		Quentinha quen = ped.getQuentinha(); //Nao e necessario usando JPA
+//		cli.delPedido(ped);
+//		quen.delPedido(ped);
 		
-		daocliente.update(cli);
-		daoquentinha.update(quen);
+//		daocliente.update(cli); //JPA Atualiza automaticamente
+//		daoquentinha.update(quen); //JPA Atualiza automaticamente
 		daopedido.delete(ped);
 		DAO.commit();
 	}
@@ -87,10 +87,21 @@ public class Fachada {
 			throw new Exception ("Quentinha inexistente!");
 
 		List<Pedido> pedidosQuentinha = quen.getListaPedidos();
-		int limite = pedidosQuentinha.size();
 		
-		for(int i = 0; i < limite; i++)
-			Fachada.excluirPedido(pedidosQuentinha.get(0).getId());
+		while(pedidosQuentinha.size() != 0) {
+			Pedido ped =  daopedido.read(pedidosQuentinha.get(0).getId());
+			
+//			Cliente cli = ped.getCliente();
+//			Quentinha quen = ped.getQuentinha(); //Nao e necessario usando JPA
+//			cli.delPedido(ped);
+//			quen.delPedido(ped);
+			
+//			daocliente.update(cli); //JPA Atualiza automaticamente
+//			daoquentinha.update(quen); //JPA Atualiza automaticamente
+			
+			daopedido.delete(ped);
+			pedidosQuentinha.remove(0);
+		}
 		
 		daoquentinha.delete(quen);
 		DAO.commit();
@@ -117,10 +128,21 @@ public class Fachada {
 			throw new Exception ("Cliente inexistente!");
 
 		List<Pedido> pedidosCliente = cli.getListaPedidos();
-		int limite = pedidosCliente.size();
 		
-		for(int i = 0; i < limite; i++)
-			Fachada.excluirPedido(pedidosCliente.get(0).getId());
+		while(pedidosCliente.size() != 0) {
+			Pedido ped =  daopedido.read(pedidosCliente.get(0).getId());
+			
+//			Cliente cli = ped.getCliente();
+//			Quentinha quen = ped.getQuentinha(); //Nao e necessario usando JPA
+//			cli.delPedido(ped);
+//			quen.delPedido(ped);
+			
+//			daocliente.update(cli); //JPA Atualiza automaticamente
+//			daoquentinha.update(quen); //JPA Atualiza automaticamente
+			
+			daopedido.delete(ped);
+			pedidosCliente.remove(0);
+		}
 		
 		daocliente.delete(cli);
 		DAO.commit();
@@ -165,7 +187,8 @@ public class Fachada {
 		
 		for(Pedido ped : pedidos)
 			if(!quentinhasPedidas.contains(ped.getQuentinha())) {
-				quentinhasPedidas.add(ped.getQuentinha());}
+				quentinhasPedidas.add(daoquentinha.read(ped.getQuentinha().getId()));
+			}
 		
 		DAO.commit();
 		return quentinhasPedidas;
@@ -178,11 +201,7 @@ public class Fachada {
 		return resultados;
 	}
 
-	public static List<Pedido> pedidosNaDataX(String data) throws Exception{
-		System.out.println(data);
-		if(data==null) 
-			throw new Exception ("Informe a data");
-	
+	public static List<Pedido> pedidosNaDataX(String data) {
 		DAO.begin();
 		List<Pedido> resultados =  daopedido.pedidosNaDataX(data);
 		DAO.commit();
@@ -223,7 +242,7 @@ public class Fachada {
 			throw new Exception ("Cliente inexistente!");
 		
 		cli.setNome(novoNome);
-		daocliente.update(cli);
+//		daocliente.update(cli); //JPA Atualiza automaticamente
 		DAO.commit();
 		return cli;
 	}
@@ -239,7 +258,7 @@ public class Fachada {
 			throw new Exception("Telefone associado a outro cliente! Informe um telefone ainda nao cadastrado.");
 		
 		cli.setTelefone(novoTelefone);
-		daocliente.update(cli);
+//		daocliente.update(cli); //JPA Atualiza automaticamente
 		DAO.commit();
 		return cli;
 	}
@@ -255,7 +274,7 @@ public class Fachada {
 			throw new Exception ("Quentinha com descricao identica ja esta cadastrada no banco!");
 		
 		quen.setDescricao(novaDescricao);
-		daoquentinha.update(quen);
+//		daoquentinha.update(quen); //JPA Atualiza automaticamente
 		DAO.commit();
 		return quen;
 	}
@@ -267,7 +286,7 @@ public class Fachada {
 			throw new Exception ("Pedido inexistente!");
 		
 		ped.setTamanho(novoTamanho);
-		daopedido.update(ped);
+//		daopedido.update(ped); //JPA Atualiza automaticamente
 		DAO.commit();
 		return ped;
 	}
@@ -284,8 +303,8 @@ public class Fachada {
 		
 		Quentinha antigaQuen = ped.getQuentinha();
 		ped.setQuentinha(novaQuen);
-		daopedido.update(ped);
-		daoquentinha.update(antigaQuen);
+//		daopedido.update(ped); //JPA Atualiza automaticamente
+//		daoquentinha.update(antigaQuen); //JPA Atualiza automaticamente
 		DAO.commit();
 		return ped;
 	}

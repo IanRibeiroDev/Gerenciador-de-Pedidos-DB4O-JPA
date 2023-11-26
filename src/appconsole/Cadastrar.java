@@ -86,14 +86,14 @@ public class Cadastrar {
 			Fachada.cadastrarPedido(20, 15, "G", "2022-11-08 12:10:00");
 			Fachada.cadastrarPedido(5, 2, "M", "2022-11-09 15:30:15");
 			Fachada.cadastrarPedido(11, 1, "P", "2022-11-10 09:45:30");
+			
+			System.out.println("cadastrados com sucesso!");
 
-	        
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 
 		Fachada.finalizar();
-		System.out.println("cadastrados com sucesso!");
 	}
 
 	public static void main(String args[]) {

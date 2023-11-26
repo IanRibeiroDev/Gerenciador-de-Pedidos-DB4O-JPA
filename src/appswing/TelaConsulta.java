@@ -182,7 +182,6 @@ public class TelaConsulta {
 						
 						try {
 							String data = JOptionPane.showInputDialog("Digite a data (AAAA-MM-DD): ");
-							Fachada.pedidosNaDataX(data);
 							List<Pedido> resultado4 = Fachada.pedidosNaDataX(data);
 							listagemPedidos(resultado4);
 							break;
@@ -273,12 +272,12 @@ public class TelaConsulta {
 			//adicionar colunas no model
 			model.addColumn("ID");
 			model.addColumn("Cliente");
-			model.addColumn("Descrição");
+			model.addColumn("Quentinha");
 			model.addColumn("Data");
 
 			//adicionar linhas no model
 			for(Pedido pedido : lista) {
-				model.addRow(new Object[] {pedido.getId(), pedido.getQuentinha(),pedido.getData(),pedido.getCliente().getNome() });
+				model.addRow(new Object[] {pedido.getId(), pedido.getCliente().getId() + " : " + pedido.getCliente().getNome(), pedido.getQuentinha().getId() + " : " + pedido.getQuentinha().getDescricao(), pedido.getData()});
 			}
 			//atualizar model no table (visualizacao)
 			table.setModel(model);
